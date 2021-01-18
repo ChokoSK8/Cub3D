@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/15 13:52:57 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/18 15:41:43 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct		s_img
 	int			endian;
 	char		*data;
 	void		*image;
+	int			width;
+	int			height;
 }					t_img;
 
 typedef struct		s_map
@@ -51,7 +53,16 @@ typedef struct		s_wall
 	int			height;
 	int			width;
 	int			n;
+	t_img		img;
 }					t_wall;
+
+typedef struct		s_walls
+{
+	t_wall		wall1;
+	t_wall		wall2;
+	t_wall		wall3;
+	t_wall		wall4;
+}					t_walls;
 
 typedef struct		s_param
 {
@@ -62,6 +73,7 @@ typedef struct		s_param
 	t_img		img_map;
 	int			height;
 	int			width;
+	t_walls		walls;
 	t_wall		wall;
 	player		hero;
 	t_img		img;
@@ -80,7 +92,7 @@ typedef struct		s_vect
 	double y;
 }					t_vect;
 
-double				convert_deg_in_rad(double degre);
+double				convert(double degre);
 
 void				get_pt_a_hori(player hero, t_vect *pt_a, t_map map, double angle);
 
@@ -98,17 +110,19 @@ void				get_pt_a_vert_90(player hero, t_vect *pt_a, t_map map, double angle);
 
 void				get_vector_vert(double angle, int len_pix, t_vect *vector);
 
+int					get_x(t_vect pt, double angle, t_param param);
+
 int					is_wall_vert(t_vect pt, double angle, t_param param);
 
 t_vect				get_pt_v(t_param param, t_map map, double angle);
 
-t_vect				get_dist_min(t_vect pt_h, t_vect pt_v, t_param param);
+t_vect				get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param, double angle);
 
 void				get_wall_dim(t_wall *wall, double dist, t_param param);
 
 void				draw_wall(t_wall wall, int pos_x, t_param *param, int color);
 
-t_vect				get_pt_a_90(t_param param, double angle);
+t_vect				get_pt_a_90(t_param *param, double angle);
 
 void				display_multi_angle(t_param *param, int color);
 
@@ -136,6 +150,16 @@ void				init_img(t_img *img, t_param param);
 
 void				init_hero(player *hero, t_map map);
 
+void				init_wall1_img(t_wall *wall, t_param param);
+
+void				init_wall2_img(t_wall *wall, t_param param);
+
+void				init_wall3_img(t_wall *wall, t_param param);
+
+void				init_wall4_img(t_wall *wall, t_param param);
+
+void				put_xpm_to_final(char *data_final, char *data, int size_line, t_img img);
+
 t_point				get_pos_hero(t_map map);
 
 int					get_angle(t_map map);
@@ -143,6 +167,16 @@ int					get_angle(t_map map);
 void				init_param(t_param *param);
 
 int					is_surrounded(char **map, int height);
+
+int					first_and_last(char **map, int height);
+
+int					right_side_check(char **map, int y);
+
+int					left_side_check(char **map, int y);
+
+int					last_line(char **map, int y);
+
+int					last_line_2(char **map, int y);
 
 int					last_line(char **map, int y);
 

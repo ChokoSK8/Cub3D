@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:42:48 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 14:31:41 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/18 15:38:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,22 @@ void			get_pt_a(player hero, t_vect *pt_a, t_map map, double angle)
 		if (pt_a->y == hero.y)
 			pt_a->y -= map.len_pix;
 		if (angle < 90)
-			pt_a->x = hero.x + tan(convert_deg_in_rad(angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.x + tan(convert(angle)) * (pt_a->y - hero.y);
 		else
-			pt_a->x = hero.x + tan(convert_deg_in_rad(angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.x + tan(convert(angle)) * (pt_a->y - hero.y);
 	}
 	else
 	{
 		pt_a->y = hero.y + map.len_pix - (hero.y % map.len_pix);
 		if (angle < 180)
-			pt_a->x = hero.x - tan(convert_deg_in_rad(180 - angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.x - tan(convert(180 - angle)) * (pt_a->y - hero.y);
 		else
-			pt_a->x = hero.x + tan(convert_deg_in_rad(angle - 180)) * (pt_a->y - hero.y);
+			pt_a->x = hero.x + tan(convert(angle - 180)) * (pt_a->y - hero.y);
 	}
 }
 
-void		get_pt_a_hori_90(player hero, t_vect *pt_a, t_map map, double angle)
+void			get_pt_a_hori_90(player hero, t_vect *pt_a, t_map map,
+		double angle)
 {
 	pt_a->x = hero.x;
 	if (angle == 0)
@@ -57,17 +58,17 @@ void			get_vector(double angle, int len_pix, t_vect *vector)
 	{
 		vector->y = -len_pix;
 		if (angle < 90)
-			vector->x = vector->y * tan(convert_deg_in_rad(angle));
+			vector->x = vector->y * tan(convert(angle));
 		else
-			vector->x = vector->y * tan(convert_deg_in_rad(angle));
+			vector->x = vector->y * tan(convert(angle));
 	}
 	else
 	{
 		vector->y = len_pix;
 		if (angle < 180)
-			vector->x = -vector->y * tan(convert_deg_in_rad(180 - angle));
+			vector->x = -vector->y * tan(convert(180 - angle));
 		else
-			vector->x = vector->y * tan(convert_deg_in_rad(angle - 180));
+			vector->x = vector->y * tan(convert(angle - 180));
 	}
 }
 

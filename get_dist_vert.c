@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:45:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 14:46:36 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/18 15:41:02 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void		get_pt_a_vert(player hero, t_vect *pt_a, t_map map, double angle)
 		if (pt_a->x == hero.x)
 			pt_a->x += map.len_pix;
 		if (angle > 270)
-			pt_a->y = hero.y - tan(convert_deg_in_rad(angle - 270)) * (pt_a->x - hero.x);
+			pt_a->y = hero.y - tan(convert(angle - 270)) * (pt_a->x - hero.x);
 		else
-			pt_a->y = hero.y + tan(convert_deg_in_rad(270 - angle)) * (pt_a->x - hero.x);
+			pt_a->y = hero.y + tan(convert(270 - angle)) * (pt_a->x - hero.x);
 	}
 	else
 	{
@@ -30,9 +30,9 @@ void		get_pt_a_vert(player hero, t_vect *pt_a, t_map map, double angle)
 		if (pt_a->x == hero.x)
 			pt_a->x -= map.len_pix;
 		if (angle < 90)
-			pt_a->y = hero.y - tan(convert_deg_in_rad(angle + 90)) * (pt_a->x - hero.x);
+			pt_a->y = hero.y - tan(convert(angle + 90)) * (pt_a->x - hero.x);
 		else
-			pt_a->y = hero.y - tan(convert_deg_in_rad(angle - 90)) * (pt_a->x - hero.x);
+			pt_a->y = hero.y - tan(convert(angle - 90)) * (pt_a->x - hero.x);
 	}
 }
 
@@ -59,17 +59,17 @@ void		get_vector_vert(double angle, int len_pix, t_vect *vector)
 	{
 		vector->x = len_pix;
 		if (angle > 270)
-			vector->y = -tan(convert_deg_in_rad(angle - 270)) * len_pix;
+			vector->y = -tan(convert(angle - 270)) * len_pix;
 		else
-			vector->y = tan(convert_deg_in_rad(270 - angle)) * len_pix;
+			vector->y = tan(convert(270 - angle)) * len_pix;
 	}
 	else
 	{
 		vector->x = -len_pix;
 		if (angle < 90)
-			vector->y = tan(convert_deg_in_rad(angle + 90)) * len_pix;
+			vector->y = tan(convert(angle + 90)) * len_pix;
 		else
-			vector->y = tan(convert_deg_in_rad(angle - 90)) * len_pix;
+			vector->y = tan(convert(angle - 90)) * len_pix;
 	}
 }
 
@@ -80,10 +80,7 @@ int			is_wall_vert(t_vect pt, double angle, t_param param)
 	int		pt_y;
 
 	pt_y = (int)pt.y;
-	if (angle > 180)
-		x = pt.x / param.map.len_pix;
-	else
-		x = pt.x / param.map.len_pix - 1;
+	x = get_x(pt, angle, param);
 	if (angle < 90 || angle > 270)
 	{
 		if (!(pt.y - pt_y) && !((int)pt.y % param.map.len_pix))

@@ -2,17 +2,17 @@
 #include <string.h>
 #include <stdio.h>
 
-void		put_xpm_to_final(char *data_final, char *data, int size_line)
+void		put_xpm_to_final(char *data_final, char *data, int size_line, int w, int h)
 {
 	int		x;
 	int		y;
 	int		pos;
 
 	y = 0;
-	while (y < 350)
+	while (y < h)
 	{
 		x = 0;
-		while (x < 500)
+		while (x < w)
 		{
 			pos = x * 4 + size_line * y;
 			data_final[pos] = data[pos];
@@ -30,7 +30,7 @@ int		main()
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char	*relative_path = "sample.xpm";
+	char	*relative_path = "textures/stone.xpm";
 	int		img_width;
 	int		img_height;
 
@@ -44,13 +44,13 @@ int		main()
 
 	void	*img_final;
 
-	img_final = mlx_new_image(mlx, 500, 350);
+	img_final = mlx_new_image(mlx, img_width, img_height);
 	int	b;
 	int s;
 	int	e;
 	char *data_final = mlx_get_data_addr(img_final, &b, &s, &e);
 
-	put_xpm_to_final(data_final, data, s);
+	put_xpm_to_final(data_final, data, s, img_width, img_height);
 
 	win = mlx_new_window(mlx, 1000, 700, "Sprite");
 

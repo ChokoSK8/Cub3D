@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   check_error_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 14:08:13 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:32:41 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/18 15:03:17 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/18 15:08:30 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-double		convert(double degre)
-{
-	double rad;
-
-	rad = degre / 57.2958;
-	return (rad);
-}
-
-void		put_xpm_to_final(char *data_final, char *data, int size_line, t_img img)
+int			first_and_last(char **map, int height)
 {
 	int		x;
 	int		y;
-	int		pos;
 
 	y = 0;
-	while (y < img.height)
+	while (y < height)
 	{
 		x = 0;
-		while (x < img.width)
+		while (map[y][x] && map[y][x] != '1')
+			x++;
+		if (!map[y][x])
+			return (0);
+		while (map[y][x])
 		{
-			pos = x * 4 + size_line * y;
-			data_final[pos] = data[pos];
-			data_final[pos + 1] = data[pos + 1];
-			data_final[pos + 2] = data[pos + 2];
-			data_final[pos + 3] = data[pos + 3];
+			if (map[y][x] != '1')
+			{
+				while (map[y][x] && map[y][x] != '1')
+					x++;
+				if (map[y][x])
+					return (0);
+			}
 			x++;
 		}
-		y++;
+		y += height - 1;
 	}
+	return (1);
 }
