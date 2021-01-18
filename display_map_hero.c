@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_map.c                                      :+:      :+:    :+:   */
+/*   display_map_hero.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:01:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 16:12:07 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/15 09:52:20 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,10 @@ void		display_map_case(t_map map, t_point	img_pt, t_param param)
 		while (x_bis--)
 		{
 			pos = (img_pt.x * 4) + (param.img_map.size_line * img_pt.y);
-			if (y_bis == map.len_pix - 1 || x_bis == map.len_pix - 1)
-			{
-				param.img_map.data[pos] = 10;
-				param.img_map.data[pos + 1] = 120;
-				param.img_map.data[pos + 2] = -10;
-				param.img_map.data[pos + 3] = -100;
-			}
-			else
-			{
-				param.img_map.data[pos] = 100;
-				param.img_map.data[pos + 1] = 20;
-				param.img_map.data[pos + 2] = -100;
-				param.img_map.data[pos + 3] = 10;
-			}
+			param.img_map.data[pos] = 100;
+			param.img_map.data[pos + 1] = 20;
+			param.img_map.data[pos + 2] = -100;
+			param.img_map.data[pos + 3] = 10;
 			img_pt.x += 1;
 		}
 		img_pt.x -= map.len_pix;
@@ -118,7 +108,7 @@ void		display_map(t_map map, t_param param)
 			if (map.map[map_pt.x][map_pt.y] == '1')
 				display_map_case(map, img_pt, param);
 			/*else
-				display_map_empty_case(map, img_pt, param);*/
+			  display_map_empty_case(map, img_pt, param);*/
 			map_pt.y += 1;
 			img_pt.x += map.len_pix;
 		}

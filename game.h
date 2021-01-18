@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 15:43:24 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/15 13:52:57 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_player
 	int			y;
 	int			len;
 	int			angle;
+	int			speed;
 }				player;
 
 typedef struct		s_img
@@ -41,6 +42,7 @@ typedef struct		s_map
 	int		height;
 	int		max_width;
 	int		len_pix;
+	int		dir;
 	char	**map;
 }					t_map;
 
@@ -116,7 +118,7 @@ size_t				get_height(char *tab);
 
 int					get_max_width(char *tab);
 
-size_t				get_lenght(char *tab);
+size_t				get_length(char *tab);
 
 int					fill_tabulation(char **map, int i, int *j);
 
@@ -128,11 +130,21 @@ char				**get_map(char *tab);
 
 void				init_map(t_map *map);
 
+int					get_dir(t_map map);
+
 void				init_img(t_img *img, t_param param);
 
 void				init_hero(player *hero, t_map map);
 
+t_point				get_pos_hero(t_map map);
+
+int					get_angle(t_map map);
+
 void				init_param(t_param *param);
+
+int					is_surrounded(char **map, int height);
+
+int					last_line(char **map, int y);
 
 //------------------Display_map------------------
 

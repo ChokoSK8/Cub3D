@@ -20,7 +20,7 @@ $(NOM):	$(OBJ)
 	ranlib $(NOM)
 		
 test:	all
-		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit display_map_hero.c display_walls.c utils.c get_dist_hori.c get_dist_vert.c get_map.c init.c main.c game.h
+		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit display_map_hero.c display_walls.c utils.c get_dist_hori.c get_dist_vert.c get_map.c init.c main.c check_error.c game.h
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

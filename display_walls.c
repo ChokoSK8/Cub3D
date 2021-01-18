@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:48:05 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 15:55:05 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/15 10:20:51 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param param)
 void			get_wall_dim(t_wall *wall, double dist, t_param param)
 {
 	wall->width = 1;
-	wall->height = param.height / dist;
+	wall->height = (param.height / dist) * 10;
+	if (wall->height > param.height)
+		wall->height = param.height;
 }
 
 void			draw_wall(t_wall wall, int pos_x, t_param *param, int color)
@@ -92,7 +94,7 @@ void			display_multi_angle(t_param *param, int color)
 	double	n;
 	int		n_wall;
 
-	n = 0.02;
+	n = 20 / (double)param->width;
 	angle = 0;
 	n_wall = 0;
 	counter = -10;

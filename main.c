@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:27:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/13 16:12:29 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/15 11:40:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int			is_wall_around(player hero, t_img img)
 	int		y_final;
 	int		pos;
 
-	y = hero.x - 5;
-	x_final = hero.x + 5;
-	y_final = hero.x + 5;
+	y = hero.y - 3;
+	x_final = hero.x + 3;
+	y_final = hero.y + 3;
 	while (y < y_final)
 	{
-		x = hero.x - 5;
+		x = hero.x - 3;
 		while (x < x_final)
 		{
 			pos = x * 4 + img.size_line * y;
-			if (img.data[pos + 1])
+			if (img.data[pos] == 100 || img.data[pos] == 10)
 				return (1);
 			x++;
 		}
@@ -40,8 +40,8 @@ int			is_wall_around(player hero, t_img img)
 
 int			is_wall_12(player hero, t_img img_map)
 {
-	hero.y -= round(5 * cos(convert_deg_in_rad(hero.angle)));
-	hero.x -= round(5 * sin(convert_deg_in_rad(hero.angle)));
+	hero.y -= round(hero.speed * cos(convert_deg_in_rad(hero.angle)));
+	hero.x -= round(hero.speed * sin(convert_deg_in_rad(hero.angle)));
 	if (is_wall_around(hero, img_map))
 		return (1);
 	return (0);
@@ -49,8 +49,8 @@ int			is_wall_12(player hero, t_img img_map)
 
 int			is_wall_6(player hero, t_img img_map)
 {
-	hero.y += round(5 * cos(convert_deg_in_rad(hero.angle)));
-	hero.x += round(5 * sin(convert_deg_in_rad(hero.angle)));
+	hero.y += round(hero.speed * cos(convert_deg_in_rad(hero.angle)));
+	hero.x += round(hero.speed * sin(convert_deg_in_rad(hero.angle)));
 	if (is_wall_around(hero, img_map))
 		return (1);
 	return (0);
@@ -64,16 +64,16 @@ int			move_hero(int key, t_param *param)
 	{
 		if (!is_wall_12(param->hero, param->img_map))
 		{
-			param->hero.y -= round(5 * cos(convert_deg_in_rad(param->hero.angle)));
-			param->hero.x -= round(5 * sin(convert_deg_in_rad(param->hero.angle)));
+			param->hero.y -= round(param->hero.speed * cos(convert_deg_in_rad(param->hero.angle)));
+			param->hero.x -= round(param->hero.speed * sin(convert_deg_in_rad(param->hero.angle)));
 		}
 	}
 	if (key == 6)
 	{
-		if (!is_wall_12(param->hero, param->img_map))
+		if (!is_wall_6(param->hero, param->img_map))
 		{
-			param->hero.y += round(5 * cos(convert_deg_in_rad(param->hero.angle)));
-			param->hero.x += round(5 * sin(convert_deg_in_rad(param->hero.angle)));
+			param->hero.y += round(param->hero.speed * cos(convert_deg_in_rad(param->hero.angle)));
+			param->hero.x += round(param->hero.speed * sin(convert_deg_in_rad(param->hero.angle)));
 		}
 	}
 	if (key == 2)
@@ -103,6 +103,8 @@ int			main()
 	map_img.image = mlx_new_image(param.mlx, param.map.max_width * param.map.len_pix, param.map.height * param.map.len_pix);
 	map_img.data = mlx_get_data_addr(map_img.image, &map_img.bpp, &map_img.size_line, &map_img.endian);
 	param.img_map = map_img;
+	if (!is_surrounded(param.map.map, param.map.height))
+		return (0);
 	display_map(param.map, param);
 
 	display_multi_angle(&param, 0xFF);
