@@ -6,13 +6,13 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:01:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 12:06:56 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/19 09:55:42 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void				change_hero_pos(t_param param, int color)
+void		change_hero_pos(t_param param, int color)
 {
 	int		x;
 	int		y;
@@ -28,10 +28,9 @@ void				change_hero_pos(t_param param, int color)
 			counter = 0;
 			while (counter < 4)
 			{
-				pos = (param.hero.x - x) * 4 + (param.img_map.size_line * (param.hero.y - y)) + counter;
-				color && !(counter % 1) ? color = -100 : color;
-				color && !(counter % 2) ? color = 20 : color;
-				color && !(counter % 3) ? color = 1 : color;
+				pos = (param.hero.x - x) * 4 + (param.img_map.size_line *
+				(param.hero.y - y)) + counter;
+				color ? color = -10 : color;
 				param.img_map.data[pos] = color;
 				counter++;
 			}
@@ -41,7 +40,7 @@ void				change_hero_pos(t_param param, int color)
 	}
 }
 
-void		display_map_case(t_map map, t_point	img_pt, t_param param)
+void		display_map_case(t_map map, t_point img_pt, t_param param)
 {
 	int		pos;
 	int		x_bis;
@@ -107,8 +106,6 @@ void		display_map(t_map map, t_param param)
 		{
 			if (map.map[map_pt.x][map_pt.y] == '1')
 				display_map_case(map, img_pt, param);
-			/*else
-			  display_map_empty_case(map, img_pt, param);*/
 			map_pt.y += 1;
 			img_pt.x += map.len_pix;
 		}

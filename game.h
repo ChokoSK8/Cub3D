@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:41:43 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/19 17:23:06 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_wall
 	int			width;
 	int			n;
 	t_img		img;
+	int			coeff;
 }					t_wall;
 
 typedef struct		s_walls
@@ -120,6 +121,12 @@ t_vect				get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param, double angle);
 
 void				get_wall_dim(t_wall *wall, double dist, t_param param);
 
+double				get_d(player hero, t_vect pt_a, double counter);
+
+double				get_angle_right(int angle_h, double counter);
+
+void				dis_textures(t_wall wall, t_param *param, int pos_x);
+
 void				draw_wall(t_wall wall, int pos_x, t_param *param, int color);
 
 t_vect				get_pt_a_90(t_param *param, double angle);
@@ -127,6 +134,16 @@ t_vect				get_pt_a_90(t_param *param, double angle);
 void				display_multi_angle(t_param *param, int color);
 
 int					move_hero(int key, t_param *param);
+
+int					is_wall_around(player hero, t_img img);
+
+int					is_wall_12(player hero, t_img img_map);
+
+int					is_wall_6(player hero, t_img img_map);
+
+void				move_key_12(player *hero, t_img img);
+
+void				move_key_6(player *hero, t_img img);
 
 size_t				get_height(char *tab);
 
@@ -180,14 +197,14 @@ int					last_line_2(char **map, int y);
 
 int					last_line(char **map, int y);
 
-//------------------Display_map------------------
+void				display_map_case(t_map map, t_point	img_pt, t_param param);
 
-void		display_map_case(t_map map, t_point	img_pt, t_param param);
+void				display_map_empty_case(t_map map, t_point img_pt, t_param param);
 
-void		display_map_empty_case(t_map map, t_point img_pt, t_param param);
+void				display_map(t_map map, t_param param);
 
-void		display_map(t_map map, t_param param);
+void				change_hero_pos(t_param param, int color);
 
-void		change_hero_pos(t_param param, int color);
+void				display_pt_a(t_param param, int color, t_vect pt_a);
 
-void		display_pt_a(t_param param, int color, t_vect pt_a);
+void				display_background(t_param *param, int color);

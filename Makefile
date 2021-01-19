@@ -8,7 +8,7 @@ OBJ1=$(SRC:.c=.o)
 OBJ=$(OBJ1:.m=.o)
 CFLAGS+=-O2
 FLAGS= -Wall -Wextra -Werror
-
+FCTS= srcs/*.c
 
 # add to match string put with X11 in size and position
 CFLAGS+= -DSTRINGPUTX11
@@ -20,7 +20,7 @@ $(NOM):	$(OBJ)
 	ranlib $(NOM)
 		
 test:	all
-		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit display_map_hero.c display_walls.c utils.c get_dist_hori.c get_dist_vert.c get_dist_vert_utils.c get_map.c init.c init_2.c init_3.c main.c check_error_2.c check_error.c game.h
+		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit check* dis* get* main.c init* utils* move_hero* game.h
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

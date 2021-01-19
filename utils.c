@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:08:13 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:32:41 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/19 09:56:47 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ double		convert(double degre)
 	return (rad);
 }
 
-void		put_xpm_to_final(char *data_final, char *data, int size_line, t_img img)
+void		put_xpm_to_final(char *data_final, char *data,
+		int size_line, t_img img)
 {
 	int		x;
 	int		y;
