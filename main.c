@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:27:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 17:49:58 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 10:26:06 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int			main(int ac, char **av)
 	(void)av;
 	(void)ac;
 	run = 1;
-	init_param(&param);
+	if (!init_param(&param))
+		return (0);
 	map_img.image = mlx_new_image(param.mlx, param.map.max_width *
 		param.map.len_pix, param.map.height * param.map.len_pix);
 	map_img.data = mlx_get_data_addr(map_img.image, &map_img.bpp,

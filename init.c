@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:31:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:28:47 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 10:36:21 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ int			get_angle(t_map map)
 		return (90);
 }
 
-void		init_param(t_param *param)
+int			init_param(t_param *param)
 {
 	param->mlx = mlx_init();
-	param->height = 700;
-	param->width = 700;
+	if (!get_resolution(param))
+		return (0);
 	init_wall1_img(&param->walls.wall1, *param);
 	init_wall2_img(&param->walls.wall2, *param);
 	init_wall3_img(&param->walls.wall3, *param);
@@ -87,4 +87,5 @@ void		init_param(t_param *param)
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");
 	init_hero(&param->hero, param->map);
+	return (1);
 }

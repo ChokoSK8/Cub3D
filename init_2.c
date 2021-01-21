@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:02 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:31:05 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 10:46:07 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		init_wall3_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, "textures/grass.xpm",
+	img.image = mlx_xpm_file_to_image(param.mlx, param.pathNO,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 17:23:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 10:50:00 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <fcntl.h>
 #include <math.h>
 #include "mlx.h"
+#include "gnl/get_next_line.h"
+#include "libft/libft.h"
 
 typedef struct	s_player
 {
@@ -181,7 +183,7 @@ t_point				get_pos_hero(t_map map);
 
 int					get_angle(t_map map);
 
-void				init_param(t_param *param);
+int					init_param(t_param *param);
 
 int					is_surrounded(char **map, int height);
 
@@ -208,3 +210,7 @@ void				change_hero_pos(t_param param, int color);
 void				display_pt_a(t_param param, int color, t_vect pt_a);
 
 void				display_background(t_param *param, int color);
+
+int					get_resolution(t_param *param, int fd);
+
+int					get_param_cub(t_param *param);

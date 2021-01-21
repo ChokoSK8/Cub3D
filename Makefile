@@ -20,7 +20,7 @@ $(NOM):	$(OBJ)
 	ranlib $(NOM)
 		
 test:	all
-		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit check* dis* get* main.c init* utils* move_hero* game.h
+		gcc $(NOM) $(FLAGS) -framework OpenGL -framework AppKit check* dis* get* main.c init* utils* move_hero* game.h libft/*.c gnl/*.c
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

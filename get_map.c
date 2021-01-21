@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 14:16:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 10:19:58 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 10:27:24 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char		*get_tab(void)
 	char	*tab;
 	int		ret;
 
-	fd = open("map", O_RDONLY);
+	fd = open("map_2", O_RDONLY);
 	tab = malloc(sizeof(int) * 100000);
 	ret = read(fd, tab, 100000);
 	tab[ret] = 0;
