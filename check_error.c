@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:06:23 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:04:08 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 14:20:37 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@ int			is_surrounded(char **map, int height)
 {
 	int		y;
 
-	if (!first_and_last(map, height))
-		return (0);
 	y = 1;
 	while (y < height - 1)
 	{
@@ -111,5 +109,7 @@ int			is_surrounded(char **map, int height)
 			return (0);
 		y++;
 	}
-	return (last_line(map, y - 1));
+	if (last_line(map, y - 1))
+		return (real_last_line(map, height));
+	return (0);
 }

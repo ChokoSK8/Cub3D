@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:24:12 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 14:16:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ int					right_side_check(char **map, int y);
 
 int					left_side_check(char **map, int y);
 
-int					last_line(char **map, int y);
+int					real_last_line(char **map, int height);
 
 int					last_line_2(char **map, int y);
 
