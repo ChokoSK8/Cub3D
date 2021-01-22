@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 14:16:54 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 18:19:22 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,14 @@ int					real_last_line(char **map, int height);
 int					last_line_2(char **map, int y);
 
 int					last_line(char **map, int y);
+
+int					xb_to_xf(int xb, int xf, char **map, int hei);
+
+void				ft_minus(int *plus, int *y);
+
+void				ft_plus(int *minus, int *y);
+
+int					get_xs(int *xb, int *xf, char **map, int hei);
 
 void				display_map_case(t_map map, t_point	img_pt, t_param param);
 
