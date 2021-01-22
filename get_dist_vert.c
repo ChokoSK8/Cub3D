@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:45:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:41:02 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 12:32:01 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int			is_wall_vert(t_vect pt, double angle, t_param param)
 	{
 		if (param.map.map[y][x] == '1')
 			return (1);
+		else if (param.map.map[y][x] == '2')
+			return (2);
 	}
 	else
 		return (1);
@@ -104,16 +106,21 @@ t_vect		get_pt_v(t_param param, t_map map, double angle)
 {
 	t_vect		pt_a;
 	t_vect		vector;
+	int			ret;
 
 	if (angle == 270 || angle == 90)
 		get_pt_a_vert_90(param.hero, &pt_a, map, angle);
 	else
 		get_pt_a_vert(param.hero, &pt_a, map, angle);
 	get_vector_vert(angle, map.len_pix, &vector);
-	while (!is_wall_vert(pt_a, angle, param))
+	while (!(ret = is_wall_vert(pt_a, angle, param)))
 	{
 		pt_a.x += vector.x;
 		pt_a.y += vector.y;
 	}
+	if (ret == 2)
+		pt_a.wall = 2;
+	else
+		pt_a.wall = 1;
 	return (pt_a);
 }

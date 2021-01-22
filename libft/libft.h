@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 15:18:03 by abrun             #+#    #+#             */
-/*   Updated: 2020/11/23 10:07:32 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 17:19:37 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,17 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 
 int					ft_toupper(int c);
+
+int					ft_strstr(char *s, char *to_find);
+
+int					ft_isspace(char c);
+
+int					ft_strnchr(char *s, char c, int n);
+
+void				ft_print_str(char *str);
+
+size_t				ft_strcpy(char *dest, char *src);
+
+void				ft_print_tab(int *tab, size_t size);
 
 #endif

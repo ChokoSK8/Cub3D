@@ -6,17 +6,14 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:31:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:36:21 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 12:22:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void		init_map(t_map *map)
+void		init_map(t_map *map, char *tab)
 {
-	char	*tab;
-
-	tab = get_tab();
 	map->map = get_map(tab);
 	map->height = (int)get_height(tab);
 	map->max_width = get_max_width(tab);
@@ -76,13 +73,14 @@ int			get_angle(t_map map)
 int			init_param(t_param *param)
 {
 	param->mlx = mlx_init();
-	if (!get_resolution(param))
+	if (!get_param_cub(param))
 		return (0);
 	init_wall1_img(&param->walls.wall1, *param);
 	init_wall2_img(&param->walls.wall2, *param);
 	init_wall3_img(&param->walls.wall3, *param);
 	init_wall4_img(&param->walls.wall4, *param);
-	init_map(&param->map);
+	init_sprite_img(&param->walls.sprite, *param);
+	init_map(&param->map, param->tab);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:27:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:26:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 16:56:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			main(int ac, char **av)
 	if (!is_surrounded(param.map.map, param.map.height))
 		return (0);
 	display_map(param.map, param);
-	display_background(&param, 1);
+	display_background(param);
 	display_multi_angle(&param, 0xFF);
 	change_hero_pos(param, 0xFF);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);

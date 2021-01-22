@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 14:16:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:27:24 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 15:58:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,4 @@ int			fill_tabulation(char **map, int i, int *j)
 		*j += 1;
 	}
 	return (1);
-}
-
-char		*get_tab(void)
-{
-	int		fd;
-	char	*tab;
-	int		ret;
-
-	fd = open("map_2", O_RDONLY);
-	tab = malloc(sizeof(int) * 100000);
-	ret = read(fd, tab, 100000);
-	tab[ret] = 0;
-	close(fd);
-	return (tab);
 }

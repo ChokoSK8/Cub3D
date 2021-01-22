@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:42:48 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:38:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 12:32:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int				is_wall_horizontal(t_vect pt, double angle, t_param param)
 	{
 		if (param.map.map[y][x] == '1')
 			return (1);
+		else if (param.map.map[y][x] == '2')
+			return (2);
 	}
 	else
 		return (1);
@@ -99,16 +101,21 @@ t_vect			get_pt_h(t_param param, t_map map, double angle)
 {
 	t_vect		pt_a;
 	t_vect		vector;
+	int			ret;
 
 	if (angle == 0 || angle == 180)
 		get_pt_a_hori_90(param.hero, &pt_a, map, angle);
 	else
 		get_pt_a(param.hero, &pt_a, map, angle);
 	get_vector(angle, map.len_pix, &vector);
-	while (!is_wall_horizontal(pt_a, angle, param))
+	while (!(ret = is_wall_horizontal(pt_a, angle, param)))
 	{
 		pt_a.x += vector.x;
 		pt_a.y += vector.y;
 	}
+	if (ret == 2)
+		pt_a.wall = 2;
+	else
+		pt_a.wall = 1;
 	return (pt_a);
 }

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 14:07:11 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 17:49:21 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 16:57:56 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		move_key_6(player *hero, t_img img)
 
 int			move_hero(int key, t_param *param)
 {
-	display_background(param, 1);
+	display_background(*param);
 	change_hero_pos(*param, 0x00);
 	if (key == 53)
 	{

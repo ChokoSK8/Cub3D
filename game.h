@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:50:00 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 12:24:12 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ typedef struct		s_walls
 	t_wall		wall2;
 	t_wall		wall3;
 	t_wall		wall4;
+	t_wall		sprite;
 }					t_walls;
 
 typedef struct		s_param
 {
 	void		*mlx;
 	void		*win;
-	//display_map
 	void		*win_map;
 	t_img		img_map;
 	int			height;
@@ -81,6 +81,14 @@ typedef struct		s_param
 	player		hero;
 	t_img		img;
 	t_map		map;
+	char		*NO;
+	char		*EA;
+	char		*WE;
+	char		*SO;
+	char		*SP;
+	char		*tab;
+	int			*floor;
+	int			*roof;
 }					t_param;
 
 typedef struct		s_point
@@ -91,8 +99,9 @@ typedef struct		s_point
 
 typedef struct		s_vect
 {
-	double x;
-	double y;
+	double	x;
+	double	y;
+	int		wall;
 }					t_vect;
 
 double				convert(double degre);
@@ -161,7 +170,7 @@ size_t				get_width(char *tab);
 
 char				**get_map(char *tab);
 
-void				init_map(t_map *map);
+void				init_map(t_map *map, char *tab);
 
 int					get_dir(t_map map);
 
@@ -176,6 +185,8 @@ void				init_wall2_img(t_wall *wall, t_param param);
 void				init_wall3_img(t_wall *wall, t_param param);
 
 void				init_wall4_img(t_wall *wall, t_param param);
+
+void				init_sprite_img(t_wall *wall, t_param param);
 
 void				put_xpm_to_final(char *data_final, char *data, int size_line, t_img img);
 
@@ -209,8 +220,32 @@ void				change_hero_pos(t_param param, int color);
 
 void				display_pt_a(t_param param, int color, t_vect pt_a);
 
-void				display_background(t_param *param, int color);
+void				display_background(t_param param);
 
-int					get_resolution(t_param *param, int fd);
+void				display_roof(t_param param, int height, int width, int size_line);
+
+void				display_floor(t_param param, int height, int width, int size_line);
+
+int					get_resolution(t_param *param, char *line);
 
 int					get_param_cub(t_param *param);
+
+int					get_no_path(t_param *param, char *line);
+
+int					get_so_path(t_param *param, char *line);
+
+int					get_we_path(t_param *param, char *line);
+
+int					get_ea_path(t_param *param, char *line);
+
+int					get_sp_path(t_param *param, char *line);
+
+char				*get_element(int fd);
+
+int					fill_param(t_param *param, char *line);
+
+int					is_map(char *line);
+
+int					fill_tab_map(char *line, int fd, char *tab);
+
+int					get_color(char *line, t_param *param, int d);

@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   display_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 11:48:05 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 17:04:56 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/22 12:00:11 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/22 12:32:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
+double			get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
+			t_param param)
+{
+	double		dist_v;
+
+	*dist_h = sqrt(pow(param.hero.y - pt_h.y, 2) +
+			pow(param.hero.x - pt_h.x, 2));
+	dist_v = sqrt(pow(param.hero.y - pt_v.y, 2) +
+			pow(param.hero.x - pt_v.x, 2));
+	return (dist_v);
+}
+
 
 t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 		double angle)
@@ -18,25 +31,26 @@ t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 	double		dist_h;
 	double		dist_v;
 
-	dist_h = sqrt(pow(param->hero.y - pt_h.y, 2) +
-			pow(param->hero.x - pt_h.x, 2));
-	dist_v = sqrt(pow(param->hero.y - pt_v.y, 2) +
-			pow(param->hero.x - pt_v.x, 2));
+	dist_v = get_distances(pt_h, pt_v, &dist_h, *param);
 	if (dist_h < dist_v)
 	{
-		if (angle < 90 || angle > 270)
+		if (pt_h.wall == 2)
+			param->wall = param->walls.sprite;
+		else if (angle < 90 || angle > 270)
 			param->wall = param->walls.wall1;
 		else
 			param->wall = param->walls.wall2;
 	}
 	else
 	{
-		if (angle > 0 && angle < 180)
+		if (pt_v.wall == 2)
+			param->wall = param->walls.sprite;
+		else if (angle > 0 && angle < 180)
 			param->wall = param->walls.wall3;
 		else
 			param->wall = param->walls.wall4;
 	}
-	if (dist_h <= dist_v)
+	if (dist_h < dist_v)
 		return (pt_h);
 	return (pt_v);
 }

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:02 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:46:07 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/22 12:22:16 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,27 @@ void		init_hero(player *hero, t_map map)
 	hero->speed = 3;
 }
 
+void		init_sprite_img(t_wall *wall, t_param param)
+{
+	t_img		img;
+
+	img.image = mlx_xpm_file_to_image(param.mlx, param.SP,
+			&img.width, &img.height);
+	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
+			&img.endian);
+	wall->img.image = mlx_new_image(param.mlx, img.width, img.height);
+	wall->img.data = mlx_get_data_addr(wall->img.image, &wall->img.bpp,
+			&wall->img.size_line, &wall->img.endian);
+	put_xpm_to_final(wall->img.data, img.data, wall->img.size_line, img);
+	wall->img.width = img.width;
+	wall->img.height = img.height;
+}
+
 void		init_wall4_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, "textures/brick.xpm",
+	img.image = mlx_xpm_file_to_image(param.mlx, param.SO,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -44,7 +60,7 @@ void		init_wall3_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.pathNO,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.NO,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -60,7 +76,7 @@ void		init_wall2_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, "textures/stone.xpm",
+	img.image = mlx_xpm_file_to_image(param.mlx, param.WE,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -76,7 +92,7 @@ void		init_wall1_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, "textures/metal.xpm",
+	img.image = mlx_xpm_file_to_image(param.mlx, param.EA,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:38:40 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 16:38:58 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/21 17:30:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int			is_wall_around(player hero, t_img img)
 	int		y_final;
 	int		pos;
 
-	y = hero.y - 1;
-	x_final = hero.x + 1;
-	y_final = hero.y + 1;
+	y = hero.y - 2;
+	x_final = hero.x + 2;
+	y_final = hero.y + 2;
 	while (y < y_final)
 	{
-		x = hero.x - 1;
+		x = hero.x - 2;
 		while (x < x_final)
 		{
 			pos = x * 4 + img.size_line * y;
