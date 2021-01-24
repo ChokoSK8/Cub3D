@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 16:08:32 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 17:31:47 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:31:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int			get_ea_path(t_param *param, char *line)
 	int		counter;
 	int		c;
 
+	if (!check_texture("EA", line))
+		return (0);
 	if (!(path = malloc(ft_strlen(line))))
 		return (0);
 	c = 0;
@@ -27,7 +29,7 @@ int			get_ea_path(t_param *param, char *line)
 	while (line[c++] && ft_isprint(line[c]) && !ft_isspace(line[c]))
 		path[counter++] = line[c];
 	path[counter] = 0;
-	if (!(param->EA = ft_strdup(path)))
+	if (!(param->ea = ft_strdup(path)))
 		return (0);
 	free(path);
 	return (1);
@@ -39,6 +41,8 @@ int			get_we_path(t_param *param, char *line)
 	int		counter;
 	int		c;
 
+	if (!check_texture("WE", line))
+		return (0);
 	if (!(path = malloc(ft_strlen(line))))
 		return (0);
 	c = 0;
@@ -48,7 +52,7 @@ int			get_we_path(t_param *param, char *line)
 	while (line[c++] && ft_isprint(line[c]) && !ft_isspace(line[c]))
 		path[counter++] = line[c];
 	path[counter] = 0;
-	if (!(param->WE = ft_strdup(path)))
+	if (!(param->we = ft_strdup(path)))
 		return (0);
 	free(path);
 	return (1);

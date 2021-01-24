@@ -6,13 +6,14 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 17:06:40 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 17:27:01 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:14:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void			display_floor(t_param param, int height, int width, int size_line)
+void			display_floor(t_param param, int height,
+			int width, int size_line)
 {
 	int		x;
 	int		y;
@@ -32,10 +33,10 @@ void			display_floor(t_param param, int height, int width, int size_line)
 		}
 		x++;
 	}
-	//printf("floor : %d, %d, %d\n", param.img.data[pos], param.img.data[pos],param.img.data[pos]);
 }
 
-void			display_roof(t_param param, int height, int width, int size_line)
+void			display_roof(t_param param, int height,
+			int width, int size_line)
 {
 	int		x;
 	int		y;

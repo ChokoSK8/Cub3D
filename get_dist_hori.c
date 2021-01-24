@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-void			get_pt_a(player hero, t_vect *pt_a, t_map map, double angle)
+void			get_pt_a(t_player hero, t_vect *pt_a, t_map map, double angle)
 {
 	if (angle > 270 || angle < 90)
 	{
@@ -34,7 +34,7 @@ void			get_pt_a(player hero, t_vect *pt_a, t_map map, double angle)
 	}
 }
 
-void			get_pt_a_hori_90(player hero, t_vect *pt_a, t_map map,
+void			get_pt_a_hori_90(t_player hero, t_vect *pt_a, t_map map,
 		double angle)
 {
 	pt_a->x = hero.x;

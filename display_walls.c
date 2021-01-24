@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 12:00:11 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:32:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:19:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ double			get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
 			pow(param.hero.x - pt_v.x, 2));
 	return (dist_v);
 }
-
 
 t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 		double angle)
@@ -113,27 +112,4 @@ void			draw_wall(t_wall wall, int pos_x, t_param *param, int color)
 			y++;
 		}
 	}
-}
-
-t_vect			get_pt_a_90(t_param *param, double angle)
-{
-	t_vect		pt_a;
-
-	if (angle == 0 || angle == 180)
-	{
-		if (angle == 0)
-			param->wall = param->walls.wall1;
-		else
-			param->wall = param->walls.wall2;
-		pt_a = get_pt_h(*param, param->map, angle);
-	}
-	else
-	{
-		if (angle == 90)
-			param->wall = param->walls.wall3;
-		else
-			param->wall = param->walls.wall4;
-		pt_a = get_pt_v(*param, param->map, angle);
-	}
-	return (pt_a);
 }

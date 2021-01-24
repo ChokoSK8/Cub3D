@@ -1,5 +1,5 @@
 
-R 1000 800
+R 1500 700
 
 NO	./textures/grass.xpm
 
@@ -11,7 +11,7 @@ EA	./textures/wood.xpm
 
 C 225,30,0
 
-F 220,100,0
+F 63,225,29
 
 S	./textures/brick.xpm
 

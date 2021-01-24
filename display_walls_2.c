@@ -6,13 +6,13 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 10:59:35 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/19 10:59:56 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:29:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-double			get_d(player hero, t_vect pt_a, double counter)
+double			get_d(t_player hero, t_vect pt_a, double counter)
 {
 	double	dist;
 
@@ -58,4 +58,27 @@ void			display_multi_angle(t_param *param, int color)
 		n_wall++;
 		counter += n;
 	}
+}
+
+t_vect			get_pt_a_90(t_param *param, double angle)
+{
+	t_vect		pt_a;
+
+	if (angle == 0 || angle == 180)
+	{
+		if (angle == 0)
+			param->wall = param->walls.wall1;
+		else
+			param->wall = param->walls.wall2;
+		pt_a = get_pt_h(*param, param->map, angle);
+	}
+	else
+	{
+		if (angle == 90)
+			param->wall = param->walls.wall3;
+		else
+			param->wall = param->walls.wall4;
+		pt_a = get_pt_v(*param, param->map, angle);
+	}
+	return (pt_a);
 }

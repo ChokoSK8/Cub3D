@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 13:31:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:22:52 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/24 15:50:00 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/24 15:50:49 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int			get_angle(t_map map)
 int			init_param(t_param *param)
 {
 	param->mlx = mlx_init();
+	param->max_w = 1200;
+	param->max_h = 1000;
 	if (!get_param_cub(param))
 		return (0);
 	init_wall1_img(&param->walls.wall1, *param);

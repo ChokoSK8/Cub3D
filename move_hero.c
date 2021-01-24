@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-void		move_key_12(player *hero, t_img img)
+void		move_key_12(t_player *hero, t_img img)
 {
 	if (!is_wall_12(*hero, img))
 	{
@@ -23,7 +23,7 @@ void		move_key_12(player *hero, t_img img)
 	}
 }
 
-void		move_key_6(player *hero, t_img img)
+void		move_key_6(t_player *hero, t_img img)
 {
 	if (!is_wall_6(*hero, img))
 	{

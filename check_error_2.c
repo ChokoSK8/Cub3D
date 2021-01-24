@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 14:01:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 18:15:42 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 14:09:43 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			get_xs(int *x_b, int *x_f, char **map, int hei)
 	*x_f = get_length(map[hei - 2]);
 	while (map[hei - 2][*x_f] != '1')
 		*x_f -= 1;
-	while (map[hei - 2][*x_f] == '1')
+	while (*x_f >= 0 && map[hei - 2][*x_f] == '1')
 		*x_f -= 1;
 	*x_f += 1;
 	if (map[hei - 1][*x_f] != '1')
@@ -71,5 +71,17 @@ int			xb_to_xf(int x_b, int x_f, char **map, int hei)
 		else
 			return (0);
 	}
+	return (1);
+}
+
+int			real_last_line(char **map, int hei)
+{
+	int		x_b;
+	int		x_f;
+
+	if (!get_xs(&x_b, &x_f, map, hei))
+		return (0);
+	if (!xb_to_xf(x_b, x_f, map, hei))
+		return (0);
 	return (1);
 }

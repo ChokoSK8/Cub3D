@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:01:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:28:55 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:16:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void		display_map(t_map map, t_param param)
 		map_pt.y = 0;
 		while (map.map[map_pt.x][map_pt.y])
 		{
-			if (map.map[map_pt.x][map_pt.y] == '2' || map.map[map_pt.x][map_pt.y] == '1')
+			if (map.map[map_pt.x][map_pt.y] == '2' ||
+					map.map[map_pt.x][map_pt.y] == '1')
 				display_map_case(map, img_pt, param);
 			map_pt.y += 1;
 			img_pt.x += map.len_pix;

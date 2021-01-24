@@ -6,13 +6,13 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:45:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:32:01 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:36:04 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void		get_pt_a_vert(player hero, t_vect *pt_a, t_map map, double angle)
+void		get_pt_a_vert(t_player hero, t_vect *pt_a, t_map map, double angle)
 {
 	if (angle > 180)
 	{
@@ -36,7 +36,8 @@ void		get_pt_a_vert(player hero, t_vect *pt_a, t_map map, double angle)
 	}
 }
 
-void		get_pt_a_vert_90(player hero, t_vect *pt_a, t_map map, double angle)
+void		get_pt_a_vert_90(t_player hero, t_vect *pt_a,
+		t_map map, double angle)
 {
 	pt_a->y = hero.y;
 	if (angle == 90)

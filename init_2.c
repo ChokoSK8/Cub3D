@@ -6,29 +6,17 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 15:05:02 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/22 12:22:16 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/24 16:31:11 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void		init_hero(player *hero, t_map map)
-{
-	t_point		pt_h;
-
-	pt_h = get_pos_hero(map);
-	hero->angle = get_angle(map);
-	hero->x = (pt_h.x + 1) * map.len_pix - map.len_pix / 2;
-	hero->y = (pt_h.y + 1) * map.len_pix - map.len_pix / 2;
-	hero->len = 2;
-	hero->speed = 3;
-}
-
 void		init_sprite_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.SP,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.sp,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -44,7 +32,7 @@ void		init_wall4_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.SO,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.so,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -60,7 +48,7 @@ void		init_wall3_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.NO,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.no,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -76,7 +64,7 @@ void		init_wall2_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.WE,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.we,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);
@@ -92,7 +80,7 @@ void		init_wall1_img(t_wall *wall, t_param param)
 {
 	t_img		img;
 
-	img.image = mlx_xpm_file_to_image(param.mlx, param.EA,
+	img.image = mlx_xpm_file_to_image(param.mlx, param.ea,
 			&img.width, &img.height);
 	img.data = mlx_get_data_addr(img.image, &img.bpp, &img.size_line,
 			&img.endian);

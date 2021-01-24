@@ -12,7 +12,7 @@
 
 #include "game.h"
 
-int			is_wall_around(player hero, t_img img)
+int			is_wall_around(t_player hero, t_img img)
 {
 	int		x;
 	int		y;
@@ -38,7 +38,7 @@ int			is_wall_around(player hero, t_img img)
 	return (0);
 }
 
-int			is_wall_12(player hero, t_img img_map)
+int			is_wall_12(t_player hero, t_img img_map)
 {
 	hero.y -= round(hero.speed * cos(convert(hero.angle)));
 	hero.x -= round(hero.speed * sin(convert(hero.angle)));
@@ -47,7 +47,7 @@ int			is_wall_12(player hero, t_img img_map)
 	return (0);
 }
 
-int			is_wall_6(player hero, t_img img_map)
+int			is_wall_6(t_player hero, t_img img_map)
 {
 	hero.y += round(hero.speed * cos(convert(hero.angle)));
 	hero.x += round(hero.speed * sin(convert(hero.angle)));
