@@ -6,20 +6,23 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 15:50:00 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 15:50:49 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/25 10:48:36 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void		init_map(t_map *map, char *tab)
+int			init_map(t_map *map, char *tab)
 {
 	map->map = get_map(tab);
 	map->height = (int)get_height(tab);
 	map->max_width = get_max_width(tab);
+	if (!is_pos_hero(map->map))
+		return (0);
 	map->dir = get_dir(*map);
 	map->len_pix = 10;
 	free(tab);
+	return (1);
 }
 
 void		init_img(t_img *img, t_param param)
@@ -82,7 +85,8 @@ int			init_param(t_param *param)
 	init_wall3_img(&param->walls.wall3, *param);
 	init_wall4_img(&param->walls.wall4, *param);
 	init_sprite_img(&param->walls.sprite, *param);
-	init_map(&param->map, param->tab);
+	if (!(init_map(&param->map, param->tab)))
+		return (0);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/24 16:07:56 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 16:12:00 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/25 10:14:15 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int			get_n(char *line)
 
 	c = 0;
 	if (!(num = malloc(6)))
+	{
+		ft_printf("Un malloc a échoué ! \n");
 		return (-1);
+	}
 	while (ft_isdigit(*line) && c < 6)
 		num[c++] = *line++;
 	num[c] = 0;
@@ -34,6 +37,8 @@ int			fill_w_h(t_param *param, char *line, int id)
 	int			n;
 
 	n = get_n(line);
+	if (n == -1)
+		return (0);
 	if (id == 'w')
 	{
 		if (n > param->max_w)

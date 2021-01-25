@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 09:51:17 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 16:32:10 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/25 10:12:24 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ char		*get_element(int fd)
 
 	find = 0;
 	if (!(line = malloc(1000)))
+	{
+		ft_printf("Un malloc a échoué !\n");
 		return (0);
+	}
 	while (!find)
 	{
 		if (get_next_line(fd, &line, 5) == -1)

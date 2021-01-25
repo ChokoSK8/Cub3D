@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 11:12:24 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 16:29:56 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 10:48:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,9 +183,11 @@ size_t				get_width(char *tab);
 
 char				**get_map(char *tab);
 
-void				init_map(t_map *map, char *tab);
+int					init_map(t_map *map, char *tab);
 
 int					get_dir(t_map map);
+
+int					is_pos_hero(char **map);
 
 void				init_img(t_img *img, t_param param);
 
