@@ -1,62 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error_2.c                                    :+:      :+:    :+:   */
+/*   check_first_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 14:01:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 15:33:21 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/25 14:59:36 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 15:27:06 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-int			get_xs_last(int *x_b, int *x_f, char **map, int hei)
+int			get_xs_first(int *x_b, int *x_f, char **map)
 {
 	*x_b = 0;
-	while (map[hei - 2][*x_b] != '1')
+	while (map[1][*x_b] != '1')
 		*x_b += 1;
-	while (map[hei - 2][*x_b] == '1')
+	while (map[1][*x_b] == '1')
 		*x_b += 1;
 	*x_b -= 1;
-	if (map[hei - 1][*x_b] != '1')
+	if (map[0][*x_b] != '1')
+	{
+		ft_putstr_fd("Il y a un problème sur la première ligne\n", 1);
 		return (0);
-	*x_f = get_length(map[hei - 2]);
-	while (map[hei - 2][*x_f] != '1')
+	}
+	*x_f = get_length(map[1]) - 1;
+	while (map[1][*x_f] != '1')
 		*x_f -= 1;
-	while (*x_f >= 0 && map[hei - 2][*x_f] == '1')
+	while (map[1][*x_f] == '1')
 		*x_f -= 1;
 	*x_f += 1;
-	if (map[hei - 1][*x_f] != '1')
+	if (map[0][*x_f] != '1')
+	{
+		ft_putstr_fd("Il y a un problème sur la première ligne\n", 1);
 		return (0);
+	}
 	return (1);
 }
 
-void		ft_minus(int *plus, int *y)
-{
-	*y -= 1;
-	*plus = 0;
-}
-
-void		ft_plus(int *minus, int *y)
-{
-	*y += 1;
-	*minus = 0;
-}
-
-int			xb_to_xf_last(int x_b, int x_f, char **map, int hei)
+int			xb_to_xf_first(int x_b, int x_f, char **map, int hei)
 {
 	int		y;
 	int		plus;
 	int		minus;
 
-	y = hei - 1;
+	y = 0;
 	minus = 1;
 	plus = 1;
 	while (x_b < x_f)
 	{
-		if (y < 1)
+		if (y > hei - 1)
 			return (0);
 		else if (map[y][x_b + 1] == '1')
 		{
@@ -64,28 +58,12 @@ int			xb_to_xf_last(int x_b, int x_f, char **map, int hei)
 			x_b++;
 			minus = 1;
 		}
-		else if (minus && y > 1 && map[y - 1][x_b] == '1')
+		else if (minus && y > 0 && map[y - 1][x_b] == '1')
 			ft_minus(&plus, &y);
 		else if (plus && y < hei - 1 && map[y + 1][x_b] == '1')
 			ft_plus(&minus, &y);
 		else
 			return (0);
 	}
-	return (1);
-}
-
-int			first_last_line(char **map, int hei)
-{
-	int		x_b;
-	int		x_f;
-
-	if (!get_xs_first(&x_b, &x_f, map))
-		return (0);
-	if (!xb_to_xf_first(x_b, x_f, map, hei))
-		return (0);
-	if (!get_xs_last(&x_b, &x_f, map, hei))
-		return (0);
-	if (!xb_to_xf_last(x_b, x_f, map, hei))
-		return (0);
 	return (1);
 }

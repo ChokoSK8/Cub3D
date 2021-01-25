@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error_2.c                                    :+:      :+:    :+:   */
+/*   check_last_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 14:01:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 15:33:21 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/25 15:47:40 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 17:22:15 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../../game.h"
 
 int			get_xs_last(int *x_b, int *x_f, char **map, int hei)
 {
@@ -31,18 +31,6 @@ int			get_xs_last(int *x_b, int *x_f, char **map, int hei)
 	if (map[hei - 1][*x_f] != '1')
 		return (0);
 	return (1);
-}
-
-void		ft_minus(int *plus, int *y)
-{
-	*y -= 1;
-	*plus = 0;
-}
-
-void		ft_plus(int *minus, int *y)
-{
-	*y += 1;
-	*minus = 0;
 }
 
 int			xb_to_xf_last(int x_b, int x_f, char **map, int hei)
@@ -71,21 +59,5 @@ int			xb_to_xf_last(int x_b, int x_f, char **map, int hei)
 		else
 			return (0);
 	}
-	return (1);
-}
-
-int			first_last_line(char **map, int hei)
-{
-	int		x_b;
-	int		x_f;
-
-	if (!get_xs_first(&x_b, &x_f, map))
-		return (0);
-	if (!xb_to_xf_first(x_b, x_f, map, hei))
-		return (0);
-	if (!get_xs_last(&x_b, &x_f, map, hei))
-		return (0);
-	if (!xb_to_xf_last(x_b, x_f, map, hei))
-		return (0);
 	return (1);
 }

@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error_3.c                                    :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/22 18:14:58 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 14:50:57 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/25 15:35:41 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 19:48:08 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../../game.h"
+
+int			is_surrounded(char **map, int height)
+{
+	int		y;
+
+	y = 1;
+	while (y < height - 1)
+	{
+		if (!left_side_check(map, y))
+			return (0);
+		if (!right_side_check(map, y))
+			return (0);
+		y++;
+	}
+	return (first_last_line(map, height));
+}
 
 int			is_pos_hero(char **map)
 {
@@ -30,35 +46,22 @@ int			is_pos_hero(char **map)
 		}
 		y++;
 	}
-	ft_printf("Il n'y a pas de répère pour le héro !\n");
+	ft_putstr_fd("Il n'y a pas de répère pour le héro !\n", 1);
 	return (0);
 }
 
-int			first_and_last(char **map, int height)
+int			first_last_line(char **map, int hei)
 {
-	int		x;
-	int		y;
+	int		x_b;
+	int		x_f;
 
-	y = 0;
-	while (y < height)
-	{
-		x = 0;
-		while (map[y][x] && map[y][x] != '1')
-			x++;
-		if (!map[y][x])
-			return (0);
-		while (map[y][x])
-		{
-			if (map[y][x] != '1')
-			{
-				while (map[y][x] && map[y][x] != '1')
-					x++;
-				if (map[y][x])
-					return (0);
-			}
-			x++;
-		}
-		y += height - 1;
-	}
+	if (!get_xs_first(&x_b, &x_f, map))
+		return (0);
+	if (!xb_to_xf_first(x_b, x_f, map, hei))
+		return (0);
+	if (!get_xs_last(&x_b, &x_f, map, hei))
+		return (0);
+	if (!xb_to_xf_last(x_b, x_f, map, hei))
+		return (0);
 	return (1);
 }

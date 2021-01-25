@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_dist_vert_utils.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/18 15:39:16 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/18 15:39:49 by abrun            ###   ########.fr       */
+/*   Created: 2021/01/25 19:48:46 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 19:49:10 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../game.h"
 
-int			get_x(t_vect pt, double angle, t_param param)
+double		convert(double degre)
 {
-	int		x;
+	double rad;
 
-	if (angle > 180)
-		x = pt.x / param.map.len_pix;
-	else
-		x = pt.x / param.map.len_pix - 1;
-	return (x);
+	rad = degre / 57.2958;
+	return (rad);
 }

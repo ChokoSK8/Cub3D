@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 10:48:27 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/25 17:39:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "mlx.h"
-# include "gnl/get_next_line.h"
-# include "libft/libft.h"
-# include "printf/printf.h"
+# include "../mlx.h"
+# include "../gnl/get_next_line.h"
+# include "../libft/libft.h"
+# include "../printf/printf.h"
 
 typedef struct		s_player
 {
@@ -155,6 +155,9 @@ void				draw_wall(t_wall wall, int pos_x,
 
 t_vect				get_pt_a_90(t_param *param, double angle);
 
+double				get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
+				t_param param);
+
 void				display_multi_angle(t_param *param, int color);
 
 int					move_hero(int key, t_param *param);
@@ -171,7 +174,7 @@ void				move_key_6(t_player *hero, t_img img);
 
 size_t				get_height(char *tab);
 
-int					get_max_width(char *tab);
+size_t				get_max_width(char *tab);
 
 size_t				get_length(char *tab);
 
@@ -182,6 +185,8 @@ char				*get_tab();
 size_t				get_width(char *tab);
 
 char				**get_map(char *tab);
+
+int					loop_get_map(char *tab, char **map, int max_width);
 
 int					init_map(t_map *map, char *tab);
 
@@ -220,19 +225,23 @@ int					right_side_check(char **map, int y);
 
 int					left_side_check(char **map, int y);
 
-int					real_last_line(char **map, int height);
+int					first_last_line(char **map, int height);
 
 int					last_line_2(char **map, int y);
 
 int					last_line(char **map, int y);
 
-int					xb_to_xf(int xb, int xf, char **map, int hei);
+int					xb_to_xf_last(int xb, int xf, char **map, int hei);
+
+int					xb_to_xf_first(int xb, int xf, char **map, int hei);
 
 void				ft_minus(int *plus, int *y);
 
 void				ft_plus(int *minus, int *y);
 
-int					get_xs(int *xb, int *xf, char **map, int hei);
+int					get_xs_first(int *xb, int *xf, char **map);
+
+int					get_xs_last(int *xb, int *xf, char **map, int hei);
 
 void				display_map_case(t_map map, t_point	img_pt, t_param param);
 
@@ -259,6 +268,8 @@ int					check_resolution(int id, char *line);
 
 int					fill_w_h(t_param *param, char *line, int id);
 
+int					get_n(char *line);
+
 int					get_param_cub(t_param *param);
 
 int					get_no_path(t_param *param, char *line);
@@ -282,6 +293,12 @@ int					is_map(char *line);
 int					fill_tab_map(char *line, int fd, char *tab);
 
 int					get_color(char *line, t_param *param, int d);
+
+int					fill_floor(t_param *param, int *tab);
+
+int					fill_roof(t_param *param, int *tab);
+
+int					*get_color_fill_tab(char *line);
 
 int					check_color(int id, char *line);
 

@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_param.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
+/*   Updated: 2021/01/25 17:26:47 by abrun            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../game.h"
+
+int			init_param(t_param *param)
+{
+	param->mlx = mlx_init();
+	param->max_w = 1200;
+	param->max_h = 1000;
+	if (!get_param_cub(param))
+		return (0);
+	init_wall1_img(&param->walls.wall1, *param);
+	init_wall2_img(&param->walls.wall2, *param);
+	init_wall3_img(&param->walls.wall3, *param);
+	init_wall4_img(&param->walls.wall4, *param);
+	init_sprite_img(&param->walls.sprite, *param);
+	if (!(init_map(&param->map, param->tab)))
+		return (0);
+	init_img(&param->img, *param);
+	param->win = mlx_new_window(param->mlx, param->width,
+			param->height, "Cub3D");
+	init_hero(&param->hero, param->map);
+	return (1);
+}
+
+void		init_img(t_img *img, t_param param)
+{
+	int		bpp;
+	int		size_line;
+	int		endian;
+	void	*image;
+	char	*img_data;
+
+	image = mlx_new_image(param.mlx, param.width, param.height);
+	img_data = mlx_get_data_addr(image, &bpp, &size_line, &endian);
+	img->bpp = bpp;
+	img->endian = endian;
+	img->size_line = size_line;
+	img->data = img_data;
+	img->image = image;
+}
+
+int			init_map(t_map *map, char *tab)
+{
+	map->map = get_map(tab);
+	map->height = (int)get_height(tab);
+	map->max_width = get_max_width(tab);
+	if (!is_pos_hero(map->map))
+		return (0);
+	map->dir = get_dir(*map);
+	map->len_pix = 10;
+	free(tab);
+	return (1);
+}
+
+void		init_hero(t_player *hero, t_map map)
+{
+	t_point		pt_h;
+
+	pt_h = get_pos_hero(map);
+	hero->angle = get_angle(map);
+	hero->x = (pt_h.x + 1) * map.len_pix - map.len_pix / 2;
+	hero->y = (pt_h.y + 1) * map.len_pix - map.len_pix / 2;
+	hero->len = 2;
+	hero->speed = 3;
+}

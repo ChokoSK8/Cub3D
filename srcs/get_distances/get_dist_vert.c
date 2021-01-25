@@ -6,11 +6,11 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 11:45:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 16:36:04 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/25 17:25:13 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../game.h"
 
 void		get_pt_a_vert(t_player hero, t_vect *pt_a, t_map map, double angle)
 {
