@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 13:27:21 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 16:56:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:31:46 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ int			main(int ac, char **av)
 	t_img		map_img;
 	int			run;
 
-	(void)av;
-	(void)ac;
+	if (ac < 2)
+	{
+		ft_putstr_fd("Il n'y pas de *.cub passé en argument !\n", 1);
+	}
+	param.cub = av[1];
 	run = 1;
 	if (!init_param(&param))
 		return (0);
@@ -38,5 +41,5 @@ int			main(int ac, char **av)
 	mlx_put_image_to_window(param.mlx, param.win, param.img_map.image, 0, 0);
 	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
 	mlx_loop(param.mlx);
-	return (1);
+	return (0);
 }

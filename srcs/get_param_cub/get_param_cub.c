@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 19:49:58 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:19:22 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,25 @@ int			get_param_cub(t_param *param)
 	int		fd;
 	int		done;
 	char	*line;
+	int		ret;
 
 	if (!(param->tab = malloc(10000)))
 		return (0);
 	done = 0;
-	fd = open("map.cub", O_RDONLY);
+	fd = open(param->cub, O_RDONLY);
 	while (!done)
 	{
 		if (!(line = get_element(fd)))
 			return (0);
-		if (!(fill_param(param, line)))
+		if (!(ret = fill_param(param, line)))
 			return (0);
+		param->checks[ret - 1] = 1;
 		done = is_map(line);
 		if (!done)
 			free(line);
 	}
+	if (!check_all(param->checks))
+		return (0);
 	if (!fill_tab_map(line, fd, param->tab))
 		return (0);
 	close(fd);

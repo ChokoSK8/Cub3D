@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 17:00:55 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:32:35 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:36:45 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int			move_hero(int key, t_param *param)
 	if (key == 53)
 	{
 		mlx_destroy_window(param->mlx, param->win);
-		param->mlx = NULL;
-		return (0);
+		exit (EXIT_SUCCESS);
 	}
 	if (key == 12)
 		move_key_12(&param->hero, param->img_map);

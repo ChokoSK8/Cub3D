@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:26:47 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 10:50:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int			init_param(t_param *param)
 	param->mlx = mlx_init();
 	param->max_w = 1200;
 	param->max_h = 1000;
+	init_checks(param);
 	if (!get_param_cub(param))
 		return (0);
 	init_wall1_img(&param->walls.wall1, *param);
@@ -73,4 +74,16 @@ void		init_hero(t_player *hero, t_map map)
 	hero->y = (pt_h.y + 1) * map.len_pix - map.len_pix / 2;
 	hero->len = 2;
 	hero->speed = 3;
+}
+
+void		init_checks(t_param *param)
+{
+	int		counter;
+
+	counter = 0;
+	while (counter < 8)
+	{
+		param->checks[counter] = 0;
+		counter++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:56:59 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:26:15 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:03:07 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			get_so_path(t_param *param, char *line)
 	if (!(param->so = ft_strdup(path)))
 		return (0);
 	free(path);
-	return (1);
+	return (2);
 }
 
 int			get_ea_path(t_param *param, char *line)
@@ -55,7 +55,7 @@ int			get_ea_path(t_param *param, char *line)
 	if (!(param->ea = ft_strdup(path)))
 		return (0);
 	free(path);
-	return (1);
+	return (3);
 }
 
 int			get_we_path(t_param *param, char *line)
@@ -78,7 +78,7 @@ int			get_we_path(t_param *param, char *line)
 	if (!(param->we = ft_strdup(path)))
 		return (0);
 	free(path);
-	return (1);
+	return (4);
 }
 
 int			get_sp_path(t_param *param, char *line)
@@ -101,7 +101,7 @@ int			get_sp_path(t_param *param, char *line)
 	if (!(param->sp = ft_strdup(path)))
 		return (0);
 	free(path);
-	return (1);
+	return (8);
 }
 
 int			get_no_path(t_param *param, char *line)

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:39:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:18:28 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ typedef struct		s_param
 	char		*tab;
 	int			*floor;
 	int			*roof;
+	int			checks[8];
+	char		*cub;
 }					t_param;
 
 typedef struct		s_point
@@ -217,6 +219,8 @@ int					get_angle(t_map map);
 
 int					init_param(t_param *param);
 
+void				init_checks(t_param *param);
+
 int					is_surrounded(char **map, int height);
 
 int					first_and_last(char **map, int height);
@@ -301,5 +305,7 @@ int					fill_roof(t_param *param, int *tab);
 int					*get_color_fill_tab(char *line);
 
 int					check_color(int id, char *line);
+
+int					check_all(int *checks);
 
 #endif

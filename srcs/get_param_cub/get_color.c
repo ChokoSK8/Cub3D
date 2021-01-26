@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:55:36 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:25:44 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:02:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@ int			get_color(char *line, t_param *param, int d)
 	{
 		if (!(fill_floor(param, tab)))
 			return (0);
+		free(tab);
+		return (7);
 	}
-	else if (d == 'C')
+	else
+	{
 		if (!(fill_roof(param, tab)))
 			return (0);
-	free(tab);
-	return (1);
+		free(tab);
+	}
+	return (6);
 }
 
 int			*get_color_fill_tab(char *line)

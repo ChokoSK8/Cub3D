@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:54:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:26:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 11:02:31 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			get_resolution(t_param *param, char *line)
 		line++;
 	if (!fill_w_h(param, line, 'h'))
 		return (0);
-	return (1);
+	return (5);
 }
 
 int			fill_w_h(t_param *param, char *line, int id)
