@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 12:06:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:37:37 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 16:35:57 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdlib.h>
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 
 int				get_next_line(int fd, char **line, int b_size);
 

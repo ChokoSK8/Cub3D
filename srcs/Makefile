@@ -20,7 +20,7 @@ $(NOM):	$(OBJ)
 	ranlib $(NOM)
 		
 test:	all
-		gcc ../$(NOM) $(FLAGS) -framework OpenGL -framework AppKit checks/check_elements/*.c checks/check_map/*.c display/*.c display/dis_walls/*.c gameplay/*.c get_distances/*.c get_param_cub/*.c initialisation/*.c ../gnl/*.c ../printf/*.c ../libft/*.c main.c
+		gcc ../$(NOM) $(FLAGS) -framework OpenGL -framework AppKit checks/check_elements/*.c checks/check_map/*.c display/*.c display/dis_walls/*.c gameplay/*.c get_distances/*.c get_param_cub/*.c initialisation/*.c free_param/*.c ../gnl/*.c ../printf/*.c ../libft/*.c main.c
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/24 14:58:07 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/24 14:44:30 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 16:22:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ int			ft_printf(const char *s, ...)
 			if (res < 0)
 				return (error_malloc(num, n_chr));
 			is_valid(*s) ? s++ : s;
-			free(num);
 		}
+		free(num);
 	}
 	va_end(lst);
 	return (n_chr);

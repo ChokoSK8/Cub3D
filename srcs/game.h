@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 11:18:28 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 15:50:05 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,5 +307,7 @@ int					*get_color_fill_tab(char *line);
 int					check_color(int id, char *line);
 
 int					check_all(int *checks);
+
+void				free_param(t_param *param);
 
 #endif

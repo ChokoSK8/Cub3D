@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 08:21:26 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/21 10:37:45 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 16:39:25 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				fill_line(char *buf, char **line)
 	counter = 0;
 	buf_len = get_len_buf(buf);
 	line_bis_len = ft_strlen(*line);
-	if (!(line_bis = ft_strdup(*line)))
+	if (!(line_bis = ft_strdup_gnl(*line)))
 		return (0);
 	free(*line);
 	if (!(*line = malloc(buf_len + line_bis_len + 1)))

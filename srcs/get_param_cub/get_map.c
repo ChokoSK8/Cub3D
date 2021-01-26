@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:59:57 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:25:56 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/26 15:40:52 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			fill_tab_map(char *line, int fd, char *tab)
 		if ((done = get_next_line(fd, &line, 30)) == -1)
 			return (0);
 		tab += ft_strcpy(tab, line);
+		free(line);
 		*tab++ = '\n';
 	}
 	*(tab - 1) = 0;
