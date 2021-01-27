@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 16:14:29 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 11:15:39 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 int			init_param(t_param *param)
 {
+	int		fd;
+
 	param->mlx = mlx_init();
 	param->max_w = 1200;
 	param->max_h = 1000;
 	init_checks(param);
-	if (!get_param_cub(param))
+	fd = open(param->cub, O_RDONLY);
+	if (!get_param_cub(param, fd))
+	{
+		close(fd);
 		return (0);
+	}
+	close(fd);
 	init_wall1_img(&param->walls.wall1, *param);
 	init_wall2_img(&param->walls.wall2, *param);
 	init_wall3_img(&param->walls.wall3, *param);
 	init_wall4_img(&param->walls.wall4, *param);
 	init_sprite_img(&param->walls.sprite, *param);
-	if (!(init_map(&param->map, param->tab)))
+	if (!(init_map(&param->map, param->tab, param)))
 		return (0);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,
@@ -51,13 +58,25 @@ void		init_img(t_img *img, t_param param)
 	img->image = image;
 }
 
-int			init_map(t_map *map, char *tab)
+int			init_map(t_map *map, char *tab, t_param *param)
 {
-	map->map = get_map(tab);
+	if (!(map->map = get_map(tab, param)))
+	{
+		return (0);
+	}
 	map->height = (int)get_height(tab);
 	map->max_width = get_max_width(tab);
 	if (!is_pos_hero(map->map))
+	{
+		free_map_param(param);
 		return (0);
+	}
+	if (!is_surrounded(map->map, map->height))
+	{
+		ft_putstr_fd("La map n'est pas fermé !\n", 1);
+		free_map_param(param);
+		return (0);
+	}
 	map->dir = get_dir(*map);
 	map->len_pix = 10;
 	free(tab);

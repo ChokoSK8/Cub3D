@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:56:59 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 16:28:16 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 11:24:45 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ int			get_so_path(t_param *param, char *line)
 		path[counter++] = line[c];
 	path[counter] = 0;
 	if (!(param->so = ft_strdup(path)))
+	{
+		free(path);
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	free(path);
 	return (2);
 }
@@ -53,7 +57,11 @@ int			get_ea_path(t_param *param, char *line)
 		path[counter++] = line[c];
 	path[counter] = 0;
 	if (!(param->ea = ft_strdup(path)))
+	{
+		free(path);
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	free(path);
 	return (3);
 }
@@ -76,7 +84,11 @@ int			get_we_path(t_param *param, char *line)
 		path[counter++] = line[c];
 	path[counter] = 0;
 	if (!(param->we = ft_strdup(path)))
+	{
+		free(path);
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	free(path);
 	return (4);
 }
@@ -99,7 +111,11 @@ int			get_sp_path(t_param *param, char *line)
 		path[counter++] = line[c];
 	path[counter] = 0;
 	if (!(param->sp = ft_strdup(path)))
+	{
+		free(path);
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	free(path);
 	return (8);
 }
@@ -122,7 +138,11 @@ int			get_no_path(t_param *param, char *line)
 		path[counter++] = line[c];
 	path[counter] = 0;
 	if (!(param->no = ft_strdup(path)))
+	{
+		free(path);
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	free(path);
 	return (1);
 }

@@ -6,52 +6,66 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 17:13:10 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 11:20:14 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
-int			get_param_cub(t_param *param)
+int			get_param_cub(t_param *param, int fd)
 {
-	int		fd;
 	int		done;
 	char	*line;
 	int		ret;
 
 	if (!(param->tab = malloc(10000)))
+	{
+		ft_putstr_fd("Un malloc a échoué !\n", 1);
 		return (0);
+	}
 	done = 0;
-	fd = open(param->cub, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putstr_fd("Le fichier n'a pas pu être ouvert !\n", 1);
+		free(param->tab);
+		return (0);
+	}
 	while (!done)
 	{
-		if (!(line = get_element(fd)))
+		if (!(line = get_element(fd, param)))
 			return (0);
 		if (!(ret = fill_param(param, line)))
+		{
+			free_tab_checks(param);
+			free(line);
 			return (0);
+		}
 		param->checks[ret - 1] = 1;
 		done = is_map(line);
 		if (!done)
 			free(line);
 	}
-	if (!check_all(param->checks))
+	if (!check_all(param->checks, param))
 		return (0);
-	if (!fill_tab_map(line, fd, param->tab))
+	if (!fill_tab_map(line, fd, param->tab, param))
 		return (0);
-	close(fd);
 	return (1);
 }
 
-char		*get_element(int fd)
+char		*get_element(int fd, t_param *param)
 {
-	int		find;
-	char	*line;
+	int			find;
+	char		*line;
 
 	find = 0;
 	while (!find)
 	{
 		if (get_next_line(fd, &line, 1) == -1)
+		{
+			free_tab_checks(param);
+			ft_putstr_fd("La lecture du fichier a échoué ou il n'y a pas de map!\n", 1);
 			return (NULL);
+		}
 		if (*line)
 			find = 1;
 		else

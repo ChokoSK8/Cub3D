@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 15:50:05 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 11:15:18 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,11 +186,11 @@ char				*get_tab();
 
 size_t				get_width(char *tab);
 
-char				**get_map(char *tab);
+char				**get_map(char *tab, t_param *param);
 
-int					loop_get_map(char *tab, char **map, int max_width);
+int					loop_get_map(char *tab, char **map, int max_width, t_param *param);
 
-int					init_map(t_map *map, char *tab);
+int					init_map(t_map *map, char *tab, t_param *param);
 
 int					get_dir(t_map map);
 
@@ -274,7 +274,7 @@ int					fill_w_h(t_param *param, char *line, int id);
 
 int					get_n(char *line);
 
-int					get_param_cub(t_param *param);
+int					get_param_cub(t_param *param, int fd);
 
 int					get_no_path(t_param *param, char *line);
 
@@ -288,13 +288,13 @@ int					get_sp_path(t_param *param, char *line);
 
 int					check_texture(char *id, char *line);
 
-char				*get_element(int fd);
+char				*get_element(int fd, t_param *param);
 
 int					fill_param(t_param *param, char *line);
 
 int					is_map(char *line);
 
-int					fill_tab_map(char *line, int fd, char *tab);
+int					fill_tab_map(char *line, int fd, char *tab, t_param *param);
 
 int					get_color(char *line, t_param *param, int d);
 
@@ -306,8 +306,14 @@ int					*get_color_fill_tab(char *line);
 
 int					check_color(int id, char *line);
 
-int					check_all(int *checks);
+int					check_all(int *checks, t_param *param);
 
 void				free_param(t_param *param);
+
+void				free_tab_checks(t_param *param);
+
+void				free_map_param(t_param *param);
+
+void				free_in_loop(t_param *param, int i, char **map);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:59:57 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 15:40:52 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 11:11:53 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
-int			fill_tab_map(char *line, int fd, char *tab)
+int			fill_tab_map(char *line, int fd, char *tab, t_param *param)
 {
 	int		done;
 
@@ -23,7 +23,12 @@ int			fill_tab_map(char *line, int fd, char *tab)
 	while (done)
 	{
 		if ((done = get_next_line(fd, &line, 30)) == -1)
+		{
+			free_tab_checks(param);
+			free(line);
+			ft_putstr_fd("Une erreur est survenue lors de la lecture de la map !\n", 1);
 			return (0);
+		}
 		tab += ft_strcpy(tab, line);
 		free(line);
 		*tab++ = '\n';
@@ -32,7 +37,7 @@ int			fill_tab_map(char *line, int fd, char *tab)
 	return (1);
 }
 
-char		**get_map(char *tab)
+char		**get_map(char *tab, t_param *param)
 {
 	char		**map;
 	int			i;
@@ -41,16 +46,17 @@ char		**get_map(char *tab)
 	max_width = get_max_width(tab);
 	if (!(map = malloc(sizeof(int *) * (get_height(tab) + 1))))
 	{
+		free_tab_checks(param);
 		ft_printf("Un malloc a échoué !\n");
 		return (0);
 	}
-	if (!(i = loop_get_map(tab, map, max_width)))
+	if (!(i = loop_get_map(tab, map, max_width, param)))
 		return (0);
 	map[i] = 0;
 	return (map);
 }
 
-int			loop_get_map(char *tab, char **map, int max_width)
+int			loop_get_map(char *tab, char **map, int max_width, t_param *param)
 {
 	int		i;
 	int		j;
@@ -59,9 +65,11 @@ int			loop_get_map(char *tab, char **map, int max_width)
 	while (*tab)
 	{
 		j = 0;
+		map[i] = 0;
 		if (!(map[i] = malloc(sizeof(int) * (max_width + 1))))
 		{
 			ft_printf("Un malloc a échoué !\n");
+			free_in_loop(param, i, map);
 			return (0);
 		}
 		while (*tab && *tab != '\n')
