@@ -21,7 +21,7 @@ $(NOM):	$(OBJ)
 	ar -r $(NOM) $(OBJ)
 	ranlib $(NOM)
 
-game:	all
+game:
 	gcc ../$(NOM) $(FLAGS) -framework OpenGL -framework AppKit $(FCTS) 
 
 clean:

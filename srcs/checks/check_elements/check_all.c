@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:45:11 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 10:20:34 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 14:03:54 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int			check_all(int *checks, t_param *param)
 		{
 			ft_putstr_fd("Il n'y a pas tous les éléments dans la config !\n", 1);
 			free_tab_checks(param);
-			printf("\nTest des leaks\n");
-			system("leaks a.out | grep leaked\n");
 			return (0);
 		}
 		counter++;

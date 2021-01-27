@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:46:28 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:22:40 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 14:41:46 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int			left_side_check(char **map, int y)
 		return (0);
 	while (map[y][x])
 	{
+		printf("(%d, %d)\n", y, x);
 		if (map[y - 1][x] == '1')
 			x = get_length(map[y]);
 		else if (map[y][x + 1] == '1')
@@ -30,6 +31,7 @@ int			left_side_check(char **map, int y)
 		else
 			return (0);
 	}
+	printf("hey1\n");
 	return (1);
 }
 
@@ -51,5 +53,6 @@ int			right_side_check(char **map, int y)
 		else
 			return (0);
 	}
+	printf("hey2\n");
 	return (1);
 }

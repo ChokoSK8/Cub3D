@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 11:15:39 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 17:02:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,17 @@ void		init_img(t_img *img, t_param param)
 int			init_map(t_map *map, char *tab, t_param *param)
 {
 	if (!(map->map = get_map(tab, param)))
-	{
 		return (0);
-	}
-	map->height = (int)get_height(tab);
+	map->height = get_height(tab);
 	map->max_width = get_max_width(tab);
 	if (!is_pos_hero(map->map))
 	{
 		free_map_param(param);
 		return (0);
 	}
-	if (!is_surrounded(map->map, map->height))
+	if (!is_surrounded_2(*map))
 	{
-		ft_putstr_fd("La map n'est pas fermé !\n", 1);
+		ft_putstr_fd("La map n'est pas fermée !\n", 1);
 		free_map_param(param);
 		return (0);
 	}

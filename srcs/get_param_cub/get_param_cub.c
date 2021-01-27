@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:58:31 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 11:20:14 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 14:05:00 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int			get_param_cub(t_param *param, int fd)
 			free(line);
 	}
 	if (!check_all(param->checks, param))
+	{
+		free(line);
 		return (0);
+	}
 	if (!fill_tab_map(line, fd, param->tab, param))
 		return (0);
 	return (1);

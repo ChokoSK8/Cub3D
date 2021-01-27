@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 11:15:18 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/27 15:47:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,5 +315,7 @@ void				free_tab_checks(t_param *param);
 void				free_map_param(t_param *param);
 
 void				free_in_loop(t_param *param, int i, char **map);
+
+int					is_surrounded_2(t_map map);
 
 #endif
