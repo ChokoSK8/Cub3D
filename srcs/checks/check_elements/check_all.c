@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 10:45:11 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 14:03:54 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 10:56:55 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			check_all(int *checks, t_param *param)
 	{
 		if (checks[counter] != 1)
 		{
-			ft_putstr_fd("Il n'y a pas tous les éléments dans la config !\n", 1);
+			ft_putstr_fd("Il n'y a pas tous les éléments !\n", 1);
 			free_tab_checks(param);
 			return (0);
 		}

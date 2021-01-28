@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 17:02:41 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 10:49:44 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int			init_map(t_map *map, char *tab, t_param *param)
 		free_map_param(param);
 		return (0);
 	}
-	if (!is_surrounded_2(*map))
+	if (!is_surrounded(*map))
 	{
 		ft_putstr_fd("La map n'est pas fermée !\n", 1);
 		free_map_param(param);

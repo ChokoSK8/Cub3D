@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:59:57 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 14:07:16 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 11:03:17 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			fill_tab_map(char *line, int fd, char *tab, t_param *param)
 		{
 			free_tab_checks(param);
 			free(line);
-			ft_putstr_fd("Une erreur est survenue lors de la lecture de la map !\n", 1);
+			ft_putstr_fd("Erreur lors de la lecture du fichier !\n", 1);
 			return (0);
 		}
 		tab += ft_strcpy(tab, line);
@@ -78,7 +78,7 @@ int			loop_get_map(char *tab, char **map, int max_width, t_param *param)
 			else
 				map[i][j++] = *tab++;
 		while (j < max_width)
-			map[i][j++] = '0';
+			map[i][j++] = 32;
 		map[i++][j] = 0;
 		*tab ? tab++ : tab;
 	}

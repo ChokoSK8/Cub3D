@@ -6,27 +6,11 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 15:35:41 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 19:48:08 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 10:45:15 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../game.h"
-
-int			is_surrounded(char **map, int height)
-{
-	int		y;
-
-	y = 1;
-	while (y < height - 1)
-	{
-		if (!left_side_check(map, y))
-			return (0);
-		if (!right_side_check(map, y))
-			return (0);
-		y++;
-	}
-	return (first_last_line(map, height));
-}
 
 int			is_pos_hero(char **map)
 {
@@ -50,18 +34,13 @@ int			is_pos_hero(char **map)
 	return (0);
 }
 
-int			first_last_line(char **map, int hei)
+int			is_surrounded(t_map map)
 {
-	int		x_b;
-	int		x_f;
+	t_point		pt;
 
-	if (!get_xs_first(&x_b, &x_f, map))
-		return (0);
-	if (!xb_to_xf_first(x_b, x_f, map, hei))
-		return (0);
-	if (!get_xs_last(&x_b, &x_f, map, hei))
-		return (0);
-	if (!xb_to_xf_last(x_b, x_f, map, hei))
+	pt = get_hero(map.map);
+	get_pt_start(&pt, map.map);
+	if (!check_around(pt, map))
 		return (0);
 	return (1);
 }

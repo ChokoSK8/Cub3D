@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:46:48 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:24:36 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 09:20:32 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double			get_angle_right(int angle_h, double counter)
 void			get_wall_dim(t_wall *wall, double dist, t_param param)
 {
 	wall->width = 1;
-	wall->height = (param.height / dist) * 10;
+	wall->height = (param.height / dist) * 5;
 	if (wall->height > param.height)
 		wall->height = param.height;
 	wall->coeff = wall->height / wall->img.height;

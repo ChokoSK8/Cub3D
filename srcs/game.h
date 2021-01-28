@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 15:47:19 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 10:50:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
 # include "../printf/printf.h"
+
+typedef struct		s_moves
+{
+	int		right;
+	int		left;
+	int		up;
+	int		down;
+}					t_moves;
 
 typedef struct		s_player
 {
@@ -104,6 +112,7 @@ typedef struct		s_point
 {
 	int		x;
 	int		y;
+	int		init;
 }					t_point;
 
 typedef struct		s_vect
@@ -221,32 +230,6 @@ int					init_param(t_param *param);
 
 void				init_checks(t_param *param);
 
-int					is_surrounded(char **map, int height);
-
-int					first_and_last(char **map, int height);
-
-int					right_side_check(char **map, int y);
-
-int					left_side_check(char **map, int y);
-
-int					first_last_line(char **map, int height);
-
-int					last_line_2(char **map, int y);
-
-int					last_line(char **map, int y);
-
-int					xb_to_xf_last(int xb, int xf, char **map, int hei);
-
-int					xb_to_xf_first(int xb, int xf, char **map, int hei);
-
-void				ft_minus(int *plus, int *y);
-
-void				ft_plus(int *minus, int *y);
-
-int					get_xs_first(int *xb, int *xf, char **map);
-
-int					get_xs_last(int *xb, int *xf, char **map, int hei);
-
 void				display_map_case(t_map map, t_point	img_pt, t_param param);
 
 void				display_map_empty_case(t_map map, t_point img_pt,
@@ -316,6 +299,32 @@ void				free_map_param(t_param *param);
 
 void				free_in_loop(t_param *param, int i, char **map);
 
-int					is_surrounded_2(t_map map);
+int					is_surrounded(t_map map);
+
+void				get_pt_start(t_point *pt, char **map);
+
+int					is_0_around(t_point pt, char **map, int max_w, int hei);
+
+int					go_left(t_point pt, char **map, int max_w, int hei);
+
+int					go_down(t_point pt, char **map, int max_w, int hei);
+
+int					go_right(t_point pt, char **map, int max_w, int hei);
+
+int					go_up(t_point pt, char **map, int max_w, int hei);
+
+void				config_right(t_point *pt, t_moves *dir);
+
+void				config_left(t_point *pt, t_moves *dir);
+
+void				config_down(t_point *pt, t_moves *dir);
+
+void				config_up(t_point *pt, t_moves *dir);
+
+int					move_pt(t_point *pt, t_map map, t_point *end, t_moves *dir);
+
+int					check_around(t_point pt, t_map map);
+
+t_point				get_hero(char **map);
 
 #endif
