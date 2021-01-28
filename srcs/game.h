@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/28 10:50:27 by abrun            ###   ########.fr       */
+/*   Updated: 2021/01/28 15:35:21 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef struct		s_wall
 	int			width;
 	int			n;
 	t_img		img;
-	int			coeff;
+	int			h_min;
+	int			coef;
 }					t_wall;
 
 typedef struct		s_walls
@@ -91,6 +92,7 @@ typedef struct		s_param
 	int			width;
 	int			max_w;
 	int			max_h;
+	int			d_max;
 	t_walls		walls;
 	t_wall		wall;
 	t_player	hero;
@@ -227,6 +229,8 @@ t_point				get_pos_hero(t_map map);
 int					get_angle(t_map map);
 
 int					init_param(t_param *param);
+
+int					get_dist_max(t_map map);
 
 void				init_checks(t_param *param);
 
