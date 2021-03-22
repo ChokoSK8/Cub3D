@@ -6,32 +6,38 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 19:45:02 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 19:45:16 by abrun            ###   ########.fr       */
+/*   Updated: 2021/02/09 15:59:48 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
-void		put_xpm_to_final(char *data_final, char *data,
-		int size_line, t_img img)
+char		*get_final_data(t_img img, t_param param)
 {
-	int		x;
-	int		y;
-	int		pos;
+	int			pos;
+	t_point		p;
+	int			coef_x;
+	int			coef_y;
+	char		*data_f;
 
-	y = 0;
-	while (y < img.height)
+	coef_x = param.width / img.width + 1;
+	coef_y = param.height / img.height + 1;
+	data_f = malloc(param.height * param.width * 3);
+	if (data_f == NULL)
+		return (NULL);
+	p.y = 0;
+	while (p.y < param.height)
 	{
-		x = 0;
-		while (x < img.width)
+		p.x = 0;
+		while (p.x < param.width)
 		{
-			pos = x * 4 + size_line * y;
-			data_final[pos] = data[pos];
-			data_final[pos + 1] = data[pos + 1];
-			data_final[pos + 2] = data[pos + 2];
-			data_final[pos + 3] = data[pos + 3];
-			x++;
+			pos = ((p.x / coef_x) * 4) + (img.size_line * (p.y / coef_y));
+			*data_f++ = img.data[pos];
+			*data_f++ = img.data[pos + 1];
+			*data_f++ = img.data[pos + 2];
+			p.x++;
 		}
-		y++;
+		p.y++;
 	}
+	return (data_f - (param.width * param.height));
 }

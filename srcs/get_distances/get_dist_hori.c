@@ -6,53 +6,64 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 16:12:05 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/26 16:12:07 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/19 09:48:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
 
-void			get_pt_a(t_player hero, t_vect *pt_a, t_map map, double angle)
+double			modulo(double x, int a)
+{
+	double		dec;
+	double		mod;
+
+	dec = x - (int)x;
+	mod = (int)x % a;
+	mod += dec;
+	return (mod);
+}
+
+void			get_pt_a_hori(t_player hero, t_vect *pt_a, t_map map, double angle)
 {
 	if (angle > 270 || angle < 90)
 	{
-		pt_a->y = hero.y - (hero.y % map.len_pix);
-		if (pt_a->y == hero.y)
+		pt_a->y = hero.vec.y - modulo(hero.vec.y, map.len_pix);
+		if (pt_a->y == hero.vec.y)
 			pt_a->y -= map.len_pix;
 		if (angle < 90)
-			pt_a->x = hero.x + tan(convert(angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.vec.x + tan(convert(angle)) * (pt_a->y - hero.vec.y);
 		else
-			pt_a->x = hero.x + tan(convert(angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.vec.x + tan(convert(angle)) * (pt_a->y - hero.vec.y);
 	}
 	else
 	{
-		pt_a->y = hero.y + map.len_pix - (hero.y % map.len_pix);
+		pt_a->y = hero.vec.y + (map.len_pix - modulo(hero.vec.y, map.len_pix));
 		if (angle < 180)
-			pt_a->x = hero.x - tan(convert(180 - angle)) * (pt_a->y - hero.y);
+			pt_a->x = hero.vec.x - tan(convert(180 - angle)) * (pt_a->y - hero.vec.y);
 		else
-			pt_a->x = hero.x + tan(convert(angle - 180)) * (pt_a->y - hero.y);
+			pt_a->x = hero.vec.x + tan(convert(angle - 180)) * (pt_a->y - hero.vec.y);
 	}
 }
 
 void			get_pt_a_hori_90(t_player hero, t_vect *pt_a, t_map map,
 		double angle)
 {
-	pt_a->x = hero.x;
+	pt_a->x = hero.vec.x;
 	if (angle == 0)
 	{
-		pt_a->y = hero.y - hero.y % map.len_pix;
-		if (pt_a->y == hero.y)
+		pt_a->y = hero.vec.y - modulo(hero.vec.y, map.len_pix);
+		if (pt_a->y == hero.vec.y)
 			pt_a->y -= map.len_pix;
 	}
 	else if (angle == 180)
 	{
-		pt_a->y = hero.y + (map.len_pix - hero.y % map.len_pix);
-		if (pt_a->y == hero.y)
+		pt_a->y = hero.vec.y + (map.len_pix - modulo(hero.vec.y, map.len_pix));
+		if (pt_a->y == hero.vec.y)
 			pt_a->y += map.len_pix;
 	}
 }
 
-void			get_vector(double angle, int len_pix, t_vect *vector)
+void			get_vector(double angle, int len_pix, t_vector *vector)
 {
 	if (angle > 270 || angle < 90)
 	{
@@ -72,27 +83,68 @@ void			get_vector(double angle, int len_pix, t_vect *vector)
 	}
 }
 
-int				is_wall_horizontal(t_vect pt, double angle, t_param param)
+t_loc			is_wall_horizontal(t_vect pt, double angle, t_param param)
 {
-	int		x;
-	int		y;
+	t_loc	loc;
 
+	loc.ret = -1;
 	if (angle > 270 || angle < 90)
-		y = (pt.y / param.map.len_pix) - 1;
+		loc.y = (pt.y / param.map.len_pix) - 1;
 	else
-		y = pt.y / param.map.len_pix;
+		loc.y = pt.y / param.map.len_pix;
 	if (angle > 180)
-		x = pt.x / param.map.len_pix;
+		loc.x = pt.x / param.map.len_pix;
 	else
-		x = pt.x / param.map.len_pix;
-	if ((x < param.map.max_width && x >= 0) && (y < param.map.height && y >= 0))
+		loc.x = pt.x / param.map.len_pix;
+	if ((loc.x < param.map.max_width && loc.x >= 0) && (loc.y < param.map.height && loc.y >= 0))
 	{
-		if (param.map.map[y][x] == '1')
-			return (1);
-		else if (param.map.map[y][x] == '2')
-			return (2);
+		if (param.map.map[loc.y][loc.x] == '1')
+			loc.ret = 1;
+		else if (param.map.map[loc.y][loc.x] == '2')
+			loc.ret = 2;
 	}
 	else
+		loc.ret = 1;
+	if (loc.ret < 0)
+		loc.ret = 0;
+	return (loc);
+}
+
+int				is_printable(t_vect pt, t_vector end_1, t_vector end_2, t_vect pt_a)
+{
+	double	d_1;
+	double	d_2;
+	double	dist;
+
+	dist = sqrt(pow(pt_a.x - pt.x, 2) + pow(pt_a.y - pt.y, 2));
+	if (dist < 2)
+		return (0);
+	d_1 = get_dist(end_1, pt);
+	d_2 = get_dist(end_2, pt);
+	if (d_1 >= 62.000 || d_2 >= 62.000)
+		return (0);
+	return (1);
+}
+
+int				is_print_dist(t_loc loc, t_vector hero, t_vect pt, t_param param)
+{
+	t_vect		cube;
+	double		angle;
+	t_vector	end;
+	t_vector	end_2;
+	t_line		d;
+	t_line		d_2;
+	t_vect		pt_b;
+
+	cube.x = (loc.x + 0.5) * param.map.len_pix;
+	cube.y = (loc.y + 0.5) * param.map.len_pix;
+	d = get_line_2_pts(cube, hero);
+	d_2 = get_d_perpendicular(d, cube);
+	angle = get_angle_sprite(hero, cube);
+	end = get_end(d_2, cube, angle, &end_2);
+	d = get_line_2_pts(pt, hero);
+	pt_b = get_inter(d, d_2);
+	if (is_printable(pt_b, end, end_2, pt))
 		return (1);
 	return (0);
 }
@@ -100,21 +152,31 @@ int				is_wall_horizontal(t_vect pt, double angle, t_param param)
 t_vect			get_pt_h(t_param param, t_map map, double angle)
 {
 	t_vect		pt_a;
-	t_vect		vector;
-	int			ret;
+	t_vector	vector;
+	t_loc		loc;
 
+	loc.ret = 0;
 	if (angle == 0 || angle == 180)
 		get_pt_a_hori_90(param.hero, &pt_a, map, angle);
 	else
-		get_pt_a(param.hero, &pt_a, map, angle);
+		get_pt_a_hori(param.hero, &pt_a, map, angle);
 	get_vector(angle, map.len_pix, &vector);
-	while (!(ret = is_wall_horizontal(pt_a, angle, param)))
+	loc = is_wall_horizontal(pt_a, angle, param);
+	if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
+		loc.ret = 0;
+	while (!loc.ret)
 	{
 		pt_a.x += vector.x;
 		pt_a.y += vector.y;
+		loc = is_wall_horizontal(pt_a, angle, param);
+		if (loc.ret == 2 && !is_print_dist(loc, param.hero.vec, pt_a, param))
+			loc.ret = 0;
 	}
-	if (ret == 2)
+	if (loc.ret == 2)
+	{
 		pt_a.wall = 2;
+		pt_a.loc = loc;
+	}
 	else
 		pt_a.wall = 1;
 	return (pt_a);

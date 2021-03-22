@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:52:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/25 17:24:43 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/16 15:33:45 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 			param->wall = param->walls.wall4;
 	}
 	if (dist_h < dist_v)
+	{
+		pt_h.dir = 1;
 		return (pt_h);
+	}
+	pt_v.dir = 0;
 	return (pt_v);
 }
 
@@ -47,10 +51,10 @@ double			get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
 {
 	double		dist_v;
 
-	*dist_h = sqrt(pow(param.hero.y - pt_h.y, 2) +
-			pow(param.hero.x - pt_h.x, 2));
-	dist_v = sqrt(pow(param.hero.y - pt_v.y, 2) +
-			pow(param.hero.x - pt_v.x, 2));
+	*dist_h = sqrt(pow(param.hero.vec.y - pt_h.y, 2) +
+			pow(param.hero.vec.x - pt_h.x, 2));
+	dist_v = sqrt(pow(param.hero.vec.y - pt_v.y, 2) +
+			pow(param.hero.vec.x - pt_v.x, 2));
 	return (dist_v);
 }
 

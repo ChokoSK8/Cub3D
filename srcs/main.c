@@ -6,12 +6,18 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:55:20 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/27 11:03:08 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/19 10:01:12 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "game.h"
+
+/*int			destroy_win(int key, t_param *param)
+{
+	(void)param;
+	printf("key : %d\n", key);
+	return (1);
+}*/
 
 int			main(int ac, char **av)
 {
@@ -35,11 +41,9 @@ int			main(int ac, char **av)
 	display_map(param.map, param);
 	display_background(param);
 	display_multi_angle(&param, 0xFF);
-	change_hero_pos(param, 0xFF);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
-	mlx_put_image_to_window(param.mlx, param.win, param.img_map.image, 0, 0);
 	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
-	//mlx_mouse_hook(param.win, mouse_h, &param);
+//	mlx_hook(param.win, 2, 1L << 2, destroy_win, &param);
 	mlx_loop(param.mlx);
 	return (0);
 }

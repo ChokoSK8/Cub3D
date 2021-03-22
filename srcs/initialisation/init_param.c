@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/01/28 14:59:07 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/16 16:03:02 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int			init_param(t_param *param)
 	if (!(init_map(&param->map, param->tab, param)))
 		return (0);
 	param->d_max = get_dist_max(param->map);
-	printf("d_max : %d\n", param->d_max);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,
 			param->height, "Cub3D");
@@ -78,7 +77,7 @@ int			init_map(t_map *map, char *tab, t_param *param)
 		return (0);
 	}
 	map->dir = get_dir(*map);
-	map->len_pix = 10;
+	map->len_pix = 64;
 	free(tab);
 	return (1);
 }
@@ -89,8 +88,8 @@ void		init_hero(t_player *hero, t_map map)
 
 	pt_h = get_pos_hero(map);
 	hero->angle = get_angle(map);
-	hero->x = (pt_h.x + 1) * map.len_pix - map.len_pix / 2;
-	hero->y = (pt_h.y + 1) * map.len_pix - map.len_pix / 2;
+	hero->vec.x = (pt_h.x + 1) * map.len_pix - map.len_pix / 2;
+	hero->vec.y = (pt_h.y + 1) * map.len_pix - map.len_pix / 2;
 	hero->len = 2;
 	hero->speed = 3;
 }
