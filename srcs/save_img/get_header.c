@@ -6,13 +6,13 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 12:11:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/22 15:59:00 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/23 14:33:27 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "save.h"
+#include "../game.h"
 
-int			ft_put_pui(int nbr, int base_len)
+int			ft_put_pui_save(int nbr, int base_len)
 {
 	int			res;
 	int			puissance;
@@ -55,7 +55,7 @@ char		*putnbr_base(int nbr, char *base, int size)
 
 	i = 0;
 	base_len = ft_len(base);
-	len = ft_put_pui(nbr, 10);
+	len = ft_put_pui_save(nbr, 10);
 	while (i < len)
 	{
  		n[i] = nbr / pow(10, len - i - 1) + '0';
@@ -63,9 +63,8 @@ char		*putnbr_base(int nbr, char *base, int size)
 		i++;
 	}
 	n[i] = 0;
-	printf("n : %s\n", n);
 	res = ft_convert_base(n, "0123456789", "0123456789abcdef");
-	i--;
+	i = ft_len(res);
 	if (i % 2 != 0)
 	{
 		put_zero(res);
@@ -77,7 +76,6 @@ char		*putnbr_base(int nbr, char *base, int size)
 		i++;
 	}
 	res[i] = 0;
-	printf("res : %s\n", res);
 	return (res);
 }
 
@@ -100,19 +98,11 @@ void		put_conv_in(char *conv, char *header, int con_len, int j)
 	}
 	len = len * 2 - 1;
 	i = j;
-	if (i < 5)
+	while (len > 0)
 	{
-		while (len > 0)
-		{
-			header[j++] = conv[len - 1];
-			header[j++] = conv[len];
-			len -= 2;
-		}
-	}
-	else
-	{
-		while (j < len + i + 1)
-			header[j++] = *conv++;
+		header[j++] = conv[len - 1];
+		header[j++] = conv[len];
+		len -= 2;
 	}
 	while (j < i + con_len)
 		header[j++] = '0';
@@ -184,19 +174,118 @@ void		fill_wid_hei(char *header, t_param param)
 	put_conv_in(conv, header, 8, 42);
 }
 
-char		*get_header(t_param param)
+void		fill_n_plan(char *header)
+{
+	int		i;
+
+	i = 50;
+	header[i++] = '0';
+	header[i++] = '1';
+	header[i++] = '0';
+	header[i++] = '0';
+	header[i] = 0;
+}
+
+void		fill_bit_per_pix(char *header)
+{
+	int		i;
+
+	i = 54;
+	header[i++] = '1';
+	header[i++] = '8';
+	header[i++] = '0';
+	header[i++] = '0';
+	header[i] = 0;
+}
+
+void		fill_comp(char *header)
+{
+	int		i;
+
+	i = 58;
+	while (i < 66)
+		header[i++] = '0';
+	header[i] = 0;
+}
+
+void		fill_n_oct(char *header, t_param param)
+{
+	int		len;
+	char	*conv;
+
+	len = param.width * param.height * 3;
+	conv = putnbr_base(len, "0123456789", 8);
+	put_conv_in(conv, header, 8, 66);
+	header[74] = 0;
+}
+
+int			convert_hexa(char *header, int i)
+{
+	int		a;
+	int		b;
+	int		res;
+
+	if (header[i] >= 96)
+		a = header[i] - 87;
+	else
+		a = header[i] - 48;
+	if (header[i + 1] >= 96)
+		b = header[i + 1] - 87;
+	else
+		b = header[i + 1] - 48;
+	res = a * 16 + b;
+	return (res);
+}
+
+void		get_resu(char *header, char *res)
+{
+	int		i;
+	int		j;
+
+	i = 2;
+	j = 2;
+	res[0] = 'B';
+	res[1] = 'M';
+	while (header[i])
+	{
+		res[j] = convert_hexa(header, i);
+		i += 2;
+		j++;
+	}
+}
+
+int			get_save_len(t_param param)
+{
+	int		len;
+
+	len = 54 + param.height * ((param.width * 3) + get_c(param.width));
+	return (len);
+}
+
+void		get_header(t_param *param)
 {
 	char	*header;
+	int		i;
 
-	if (!(header = malloc(55)))
-		return (NULL);
+	if (!(header = malloc(110)))
+		param->save = NULL;
+	if (!(param->save = malloc(get_save_len(*param))))
+		param->save = NULL;
 	header[0] = 'B';
 	header[1] = 'M';
-	fill_len_fic(header, param);
+	fill_len_fic(header, *param);
 	fill_chp_res(header);
 	fill_offset(header);
 	fill_len_img(header);
-	fill_wid_hei(header, param);
-	printf("header : %s", header);
-	return (header);
+	fill_wid_hei(header, *param);
+	fill_n_plan(header);
+	fill_bit_per_pix(header);
+	fill_comp(header);
+	fill_n_oct(header, *param);
+	i = 74;
+	while (i < 106)
+		header[i++] = '0';
+	header[i] = 0;
+	get_resu(header, param->save);
+	free(header);
 }

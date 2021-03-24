@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/19 09:49:26 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/23 14:05:42 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -148,6 +149,7 @@ typedef struct		s_param
 	int			checks[8];
 	char		*cub;
 	int			x;
+	char		*save;
 }					t_param;
 
 typedef struct		s_point
@@ -393,5 +395,19 @@ double				modulo(double x, int a);
 t_line				get_d_angle_hero(t_player h, t_map map);
 
 double				get_dist(t_vector pt, t_vect pt_2);
+
+int					get_c(int wid);
+
+void				get_pix(char *data, t_param *param, int size_line);
+
+void				get_header(t_param *param);
+
+int					ft_len(char *s);
+
+char				*ft_convert_base(char *n, char *base_from, char *base_to);
+
+long int			ft_pow_conv(long int nb, int power);
+
+long int			ft_strstr_conv(char *str, char to_find);
 
 #endif

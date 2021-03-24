@@ -6,15 +6,13 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 12:12:28 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/22 15:42:18 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/23 14:06:21 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#include "../game.h"
 
-long int	ft_pow(long int nb, int power)
+long int	ft_pow_conv(long int nb, int power)
 {
 	long int res;
 
@@ -34,7 +32,7 @@ int			ft_len(char *str)
 	return (strlen);
 }
 
-long int	ft_put_puissance(long int nbr, unsigned int base_len)
+long int	ft_put_puissance_conv(long int nbr, unsigned int base_len)
 {
 	long int	res;
 	long int	puissance;
@@ -61,9 +59,9 @@ char		*ft_putnbr_base(long int nbr, char *base, int size, long int tab[2])
 		res[0] = '-';
 	while (nbr > 0)
 	{
-		res[tab[0]] = base[nbr / ft_pow(base_len, tab[1])];
+		res[tab[0]] = base[nbr / ft_pow_conv(base_len, tab[1])];
 		tab[0]++;
-		nbr %= ft_pow(base_len, tab[1]);
+		nbr %= ft_pow_conv(base_len, tab[1]);
 		tab[1]--;
 	}
 	while (tab[1]-- >= 0)

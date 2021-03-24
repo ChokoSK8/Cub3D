@@ -6,17 +6,15 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 12:09:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/22 15:40:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/23 14:07:38 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdbool.h>
-#include <stdlib.h>
+#include "../game.h"
 
 int				ft_len(char *str);
 
-long int		ft_strstr(char *str, char to_find)
+long int		ft_strstr_conv(char *str, char to_find)
 {
 	long int		counter;
 
@@ -73,9 +71,9 @@ long int		ft_atoi_base(char *str, char *base)
 		str++;
 	}
 	nbr = 0;
-	while (*str && ft_strstr(base, *(str)) != -1)
+	while (*str && ft_strstr_conv(base, *(str)) != -1)
 	{
-		nbr += ft_strstr(base, *str);
+		nbr += ft_strstr_conv(base, *str);
 		nbr *= ft_len(base);
 		str++;
 	}
@@ -86,7 +84,7 @@ long int		ft_atoi_base(char *str, char *base)
 
 char			*ft_putnbr_base(int n, char *base, int size, long int tab[2]);
 
-int				ft_put_puissance(long int nbr, int base_len);
+int				ft_put_puissance_conv(long int nbr, int base_len);
 
 char			*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
@@ -106,7 +104,7 @@ char			*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		tab_c_p[0]++;
 		n *= -1;
 	}
-	size = ft_put_puissance(n, base_len) + 1 + tab_c_p[0];
+	size = ft_put_puissance_conv(n, base_len) + 1 + tab_c_p[0];
 	if (!(res = (char *)malloc(sizeof(char) * size)))
 		return (0);
 	if (size == 0)
