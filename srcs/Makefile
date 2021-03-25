@@ -8,7 +8,7 @@ OBJ1=$(SRC:.c=.o)
 OBJ=$(OBJ1:.m=.o)
 CFLAGS+=-O2
 FLAGS= -Wall -Wextra -Werror
-FCTS= checks/check_elements/*.c checks/check_map/*.c display/*.c display/dis_walls/*.c gameplay/*.c get_distances/*.c get_param_cub/*.c initialisation/*.c free_param/*.c ../gnl/*.c ../printf/*.c ../libft/*.c save_img/*.c  main.c
+FCTS= ../libmms/*.c checks/check_elements/*.c checks/check_map/*.c display/*.c display/dis_walls/*.c gameplay/*.c get_distances/*.c get_param_cub/*.c initialisation/*.c free_param/*.c ../gnl/*.c ../printf/*.c ../libft/*.c save_img/*.c  main.c
 LIB=game.a
 OBJ2= $(FCTS:.c=.o)
 

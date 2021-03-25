@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/23 14:05:42 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/24 13:28:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -409,5 +409,7 @@ char				*ft_convert_base(char *n, char *base_from, char *base_to);
 long int			ft_pow_conv(long int nb, int power);
 
 long int			ft_strstr_conv(char *str, char to_find);
+
+int					mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 12:11:37 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/23 14:33:27 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/24 11:44:39 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,12 @@ void		fill_len_fic(char *header, t_param param)
 	int		len;
 	char	*conv;
 	int		i;
+	int		c;
 
+	c = get_c(param.width);
 	i = 2;
-	len = 54 + param.width * param.height * 3;
+	len = 54 + (param.width * 3 + c) * param.height;
+	printf("len : %d\n", len);
 	conv = putnbr_base(len, "0123456789", 8);
 	put_conv_in(conv, header, 8, 2);
 	header[10] = 0;
@@ -210,13 +213,18 @@ void		fill_comp(char *header)
 
 void		fill_n_oct(char *header, t_param param)
 {
-	int		len;
+/*	int		len;
 	char	*conv;
 
 	len = param.width * param.height * 3;
 	conv = putnbr_base(len, "0123456789", 8);
 	put_conv_in(conv, header, 8, 66);
-	header[74] = 0;
+	header[74] = 0;*/
+	int		i;
+	(void)param;
+	i = 66;
+	while (i < 74)
+		header[i++] = '0'; 
 }
 
 int			convert_hexa(char *header, int i)

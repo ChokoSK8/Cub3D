@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 13:55:20 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/23 14:45:36 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/24 11:44:55 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void		save_img(t_param param)
 	get_header(&param);
 	get_pix(param.img.data, &param, param.img.size_line);
 	fd = open("image.bmp", O_WRONLY | O_CREAT);
-	end = (get_c(param.width) + (param.width * 3)) * param.height;
+	end = (param.width * 3 + get_c(param.width)) * param.height + 54;
+	printf("end : %d\n", end);
 	i = 0;
 	while (i < end)
 	{

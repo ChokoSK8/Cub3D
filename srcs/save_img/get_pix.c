@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:58:01 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/23 14:59:06 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/24 11:52:24 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int			get_c(int wid)
 	int		n;
 	int		c;
 
-	n = ((3 * wid) / 4);
-	if (3 * wid / 4 - n != 0)
+	n = (3 * wid) / 4;
+	if (((3 * wid) % 4) != 0)
 		n++;
 	c = 4 * n - 3 * wid;
+	printf("c : %d\nn : %d\n", c, n);
 	return (c);
 }
 
@@ -33,9 +34,9 @@ void		get_pix(char *data, t_param *param, int size_line)
 	int			j;
 
 	c = get_c(param->width);
-	y = 0;
+	y = param->height - 1;
 	j = 54;
-	while (y < param->height)
+	while (y >= 0)
 	{
 		x = 0;
 		while (x < param->width)
@@ -52,6 +53,7 @@ void		get_pix(char *data, t_param *param, int size_line)
 			param->save[j++] = 0;
 			x++;
 		}
-		y++;
+		y--;
 	}
+	printf("j : %d\n", j);
 }
