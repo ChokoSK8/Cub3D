@@ -35,13 +35,11 @@ int		print_c_neg(int n, int n_chr, char *num)
 {
 	int			puissance;
 	int			n_point;
-	int			filler;
 	int			res;
 
 	puissance = 1;
 	n_point = get_flag_point(num);
 	res = get_res(puissance, n_chr);
-	filler = get_filler(num, n_point);
 	if (p_p(num, n, n_point))
 		ft_putchar_fd(n, 1);
 	while (puissance++ < n_chr)

@@ -47,7 +47,7 @@ char		**get_map(char *tab, t_param *param)
 	if (!(map = malloc(sizeof(int *) * (get_height(tab) + 1))))
 	{
 		free_tab_checks(param);
-		ft_printf("Un malloc a échoué !\n");
+		printf("Un malloc a échoué !\n");
 		return (0);
 	}
 	if (!(i = loop_get_map(tab, map, max_width, param)))
@@ -68,7 +68,7 @@ int			loop_get_map(char *tab, char **map, int max_width, t_param *param)
 		map[i] = 0;
 		if (!(map[i] = malloc(sizeof(int) * (max_width + 1))))
 		{
-			ft_printf("Un malloc a échoué !\n");
+			printf("Un malloc a échoué !\n");
 			free_in_loop(param, i, map);
 			return (0);
 		}

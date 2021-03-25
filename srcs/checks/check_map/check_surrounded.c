@@ -51,7 +51,7 @@ int			check_around(t_point pt, t_map map)
 	dir.up = 1;
 	dir.down = 1;
 	end.x = pt.x;
-	end.y = end.y;
+	end.y = 0;
 	end.init = 0;
 	if (!(move_pt(&pt, map, &end, &dir)))
 		return (0);

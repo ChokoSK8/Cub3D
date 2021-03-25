@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../mlx.h"
+# include "../libx/mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
 # include "../printf/printf.h"

@@ -29,12 +29,10 @@ int			ft_put_pui_save(int nbr, int base_len)
 
 void		put_zero(char *s)
 {
-	int		i;
 	int		len;
 	char	tmp;
 
 	len = ft_len(s);
-	i = 0;
 	s[len] = '0';
 	while (len > 0)
 	{
@@ -48,13 +46,11 @@ void		put_zero(char *s)
 char		*putnbr_base(int nbr, char *base, int size)
 {
 	char		*res;
-	int			base_len;
 	int			len;
 	char		n[size + 1];
 	int			i;
 
 	i = 0;
-	base_len = ft_len(base);
 	len = ft_put_pui_save(nbr, 10);
 	while (i < len)
 	{
@@ -63,7 +59,7 @@ char		*putnbr_base(int nbr, char *base, int size)
 		i++;
 	}
 	n[i] = 0;
-	res = ft_convert_base(n, "0123456789", "0123456789abcdef");
+	res = ft_convert_base(n, base, "0123456789abcdef");
 	i = ft_len(res);
 	if (i % 2 != 0)
 	{
@@ -112,11 +108,9 @@ void		fill_len_fic(char *header, t_param param)
 {
 	int		len;
 	char	*conv;
-	int		i;
 	int		c;
 
 	c = get_c(param.width);
-	i = 2;
 	len = 54 + (param.width * 3 + c) * param.height;
 	printf("len : %d\n", len);
 	conv = putnbr_base(len, "0123456789", 8);

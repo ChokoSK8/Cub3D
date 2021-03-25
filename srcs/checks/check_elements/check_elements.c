@@ -16,7 +16,7 @@ int		check_syntaxe(char *s, size_t len, char *line, char *id)
 {
 	if (!ft_strnstr(line, s, len))
 	{
-		ft_printf("Erreur de syntaxe pour l'élément : %s\n", id);
+		printf("Erreur de syntaxe pour l'élément : %s\n", id);
 		return (0);
 	}
 	return (1);
@@ -41,7 +41,7 @@ int		check_texture(char *id, char *line)
 	fd = open(line, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Erreur sur le chemin de la texture : %s\n", id);
+		printf("Erreur sur le chemin de la texture : %s\n", id);
 		return (0);
 	}
 	return (1);
@@ -63,14 +63,14 @@ int		check_rgb(char *line, int id)
 		}
 		if (counter < 0 || counter == 3)
 		{
-			ft_printf("Erreur de syntaxe pour l'élément : %c\n", id);
+			printf("Erreur de syntaxe pour l'élément : %c\n", id);
 			return (0);
 		}
 		*line && loop ? line++ : line;
 	}
 	if (*line)
 	{
-		ft_printf("Erreur de syntaxe pour l'élément : %c\n", id);
+		printf("Erreur de syntaxe pour l'élément : %c\n", id);
 		return (0);
 	}
 	return (1);
@@ -82,7 +82,7 @@ int		check_color(int id, char *line)
 		line++;
 	if (!ft_strnchr(line, id, 1))
 	{
-		ft_printf("Erreur de syntaxe pour l'élément : %c\n", id);
+		printf("Erreur de syntaxe pour l'élément : %c\n", id);
 		return (0);
 	}
 	line++;
@@ -97,7 +97,7 @@ int		check_resolution(int id, char *line)
 {
 	if (!ft_strnchr(line, id, 1))
 	{
-		ft_printf("Erreur de syntaxe pour l'élément : %c\n", id);
+		printf("Erreur de syntaxe pour l'élément : %c\n", id);
 		return (0);
 	}
 	line++;
@@ -111,7 +111,7 @@ int		check_resolution(int id, char *line)
 		line++;
 	if (*line)
 	{
-		ft_printf("Erreur de syntaxe pour l'élément : %c\n", id);
+		printf("Erreur de syntaxe pour l'élément : %c\n", id);
 		return (0);
 	}
 	return (1);

@@ -15,7 +15,7 @@
 int			move_hero(int key, t_param *param)
 {
 	display_background(*param);
-	if (key == 53)
+	if (key == 65307)
 	{
 		mlx_destroy_window(param->mlx, param->win);
 		free_param(param);
@@ -23,13 +23,13 @@ int			move_hero(int key, t_param *param)
 		system("leaks a.out | grep leaked\n");
 		exit(0);
 	}
-	if (key == 12)
+	if (key == 'a')
 		move_key_12(&param->hero, param->img_map);
-	if (key == 6)
+	if (key == 'w')
 		move_key_6(&param->hero, param->img_map);
-	if (key == 2)
+	if (key == 'd')
 		param->hero.angle -= 1;
-	if (key == 1)
+	if (key == 's')
 		param->hero.angle += 1;
 	if (param->hero.angle < 0)
 		param->hero.angle += 360;

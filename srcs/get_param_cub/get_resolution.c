@@ -62,7 +62,7 @@ int			get_n(char *line)
 	c = 0;
 	if (!(num = malloc(6)))
 	{
-		ft_printf("Un malloc a échoué ! \n");
+		printf("Un malloc a échoué ! \n");
 		return (-1);
 	}
 	while (ft_isdigit(*line) && c < 6)

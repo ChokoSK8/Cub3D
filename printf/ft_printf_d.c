@@ -71,7 +71,6 @@ int			print_d_neg(int space_plus, int n, int n_chr, char *num)
 {
 	int			puissance;
 	int			n_point;
-	int			filler;
 	long int	nbr;
 	int			res;
 
@@ -81,7 +80,6 @@ int			print_d_neg(int space_plus, int n, int n_chr, char *num)
 	res = get_res_npt_neg(n, n_chr, n_point, space_plus);
 	!p_p(num, n, n_point) && n_chr == 0 && !space_plus ? res = 0 : res;
 	!p_p(num, n, n_point) && n_chr == 0 && space_plus ? res = 1 : res;
-	filler = get_filler(num, n_point);
 	n_chr += print_d_n_1(n_point, n);
 	if (space_plus == '+' && n >= 0)
 		ft_putchar_fd(space_plus, 1);

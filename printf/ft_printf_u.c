@@ -37,7 +37,6 @@ int		print_u_neg(unsigned int n, int n_chr, char *num)
 {
 	int			puissance;
 	int			n_point;
-	int			filler;
 	int			res;
 
 	puissance = ft_putpui(n, 10);
@@ -45,7 +44,6 @@ int		print_u_neg(unsigned int n, int n_chr, char *num)
 	res = get_res_npt(puissance, n_chr, n_point, 0);
 	if (!p_p(num, n, n_point) && n_chr == 0)
 		res = 0;
-	filler = get_filler(num, n_point);
 	puissance = print_d_n_2(puissance, n_point);
 	if (p_p(num, n, n_point))
 		ft_putnbr_fd(n, 1);

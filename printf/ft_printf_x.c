@@ -43,14 +43,12 @@ int			print_x_neg(unsigned int n, int n_chr, char *num)
 {
 	int			puissance;
 	int			n_point;
-	int			filler;
 	int			res;
 
 	puissance = ft_putpui(n, 16);
 	n_point = get_flag_point(num);
 	res = get_res_npt(puissance, n_chr, n_point, 0);
 	!p_p(num, n, n_point) && !n_chr ? res -= 1 : res;
-	filler = get_filler(num, n_point);
 	n_chr += print_x_n_1(n_point, n);
 	puissance = print_d_n_2(puissance, n_point);
 	if (p_p(num, n, n_point))

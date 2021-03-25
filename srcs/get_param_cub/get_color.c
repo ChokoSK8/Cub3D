@@ -45,7 +45,7 @@ int			*get_color_fill_tab(char *line)
 
 	if (!(tab = malloc(sizeof(int) * 3)))
 	{
-		ft_printf("Un malloc a échoué ! \n");
+		printf("Un malloc a échoué ! \n");
 		return (0);
 	}
 	while (*line && !ft_isdigit(*line))
@@ -67,7 +67,7 @@ int			fill_floor(t_param *param, int *tab)
 	counter = 0;
 	if (!(param->floor = malloc(sizeof(int))))
 	{
-		ft_printf("Un malloc a échoué ! \n");
+		printf("Un malloc a échoué ! \n");
 		return (0);
 	}
 	while (counter < 3)
@@ -85,7 +85,7 @@ int			fill_roof(t_param *param, int *tab)
 	counter = 0;
 	if (!(param->roof = malloc(sizeof(int))))
 	{
-		ft_printf("Un malloc a échoué ! \n");
+		printf("Un malloc a échoué ! \n");
 		return (0);
 	}
 	while (counter < 3)
