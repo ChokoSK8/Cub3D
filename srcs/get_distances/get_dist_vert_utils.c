@@ -17,7 +17,7 @@ int			get_x(t_vect pt, double angle, t_param param)
 	int		x;
 
 	if (angle > 180)
-		x = pt.x / param.map.len_pix;
+		x = (pt.x + 0.0001) / param.map.len_pix;
 	else
 		x = pt.x / param.map.len_pix - 1;
 	return (x);

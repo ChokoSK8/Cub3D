@@ -24,16 +24,15 @@ void		free_param(t_param *param)
 	free(param->we);
 	free(param->floor);
 	free(param->roof);
-	free(param->img.data);
-	free(param->walls.wall1.img.data);
-	free(param->walls.wall2.img.data);
-	free(param->walls.wall3.img.data);
-	free(param->walls.wall4.img.data);
-	free(param->walls.sprite.img.data);
+	mlx_destroy_image(param->mlx, param->img_map.image);
+	mlx_destroy_image(param->mlx, param->img.image);
+	mlx_destroy_image(param->mlx, param->walls.wall1.img.image);
+	mlx_destroy_image(param->mlx, param->walls.wall2.img.image);
+	mlx_destroy_image(param->mlx, param->walls.wall3.img.image);
+	mlx_destroy_image(param->mlx, param->walls.wall4.img.image);
+	mlx_destroy_image(param->mlx, param->walls.sprite.img.image);
 	while (param->map.map[counter])
 		free(param->map.map[counter++]);
-	free(param->map.map);
-	free(param->img_map.data);
 }
 
 void		free_tab_checks(t_param *param)
@@ -67,14 +66,9 @@ void		free_map_param(t_param *param)
 	free(param->we);
 	free(param->floor);
 	free(param->roof);
-	free(param->walls.wall1.img.data);
-	free(param->walls.wall2.img.data);
-	free(param->walls.wall3.img.data);
-	free(param->walls.wall4.img.data);
-	free(param->walls.sprite.img.data);
 	while (param->map.map[counter])
 		free(param->map.map[counter++]);
-	free(param->map.map);
+	mlx_destroy_display(param->mlx);
 }
 
 void		free_in_loop(t_param *param, int i, char **map)

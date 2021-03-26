@@ -22,7 +22,8 @@ int			init_param(t_param *param)
 	fd = open(param->cub, O_RDONLY);
 	if (!get_param_cub(param, fd))
 	{
-		close(fd);
+		if (fd > 0)
+			close(fd);
 		return (0);
 	}
 	close(fd);

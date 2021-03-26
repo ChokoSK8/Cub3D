@@ -22,7 +22,7 @@ $(NOM):	$(OBJ)
 	ranlib $(NOM)
 
 game:
-	gcc $(FLAGS) $(FCTS) ../libx/$(NOM) -Llibmlx -L/usr/lib -lXext -lX11 -lm -lbsd
+	gcc $(FLAGS) $(FCTS) ../libx/$(NOM) -Llibmlx -L/usr/lib -lXext -lX11 -lm -lbsd -g
 
 clean:
 	rm -f $(NOM) $(OBJ) *~

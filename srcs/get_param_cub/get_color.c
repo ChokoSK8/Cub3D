@@ -65,7 +65,7 @@ int			fill_floor(t_param *param, int *tab)
 	int		counter;
 
 	counter = 0;
-	if (!(param->floor = malloc(sizeof(int))))
+	if (!(param->floor = malloc(sizeof(int) * 3)))
 	{
 		printf("Un malloc a échoué ! \n");
 		return (0);
@@ -83,7 +83,7 @@ int			fill_roof(t_param *param, int *tab)
 	int		counter;
 
 	counter = 0;
-	if (!(param->roof = malloc(sizeof(int))))
+	if (!(param->roof = malloc(sizeof(int) * 3)))
 	{
 		printf("Un malloc a échoué ! \n");
 		return (0);
