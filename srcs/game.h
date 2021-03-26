@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../mlx.h"
+# include "../libx/mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
 # include "../printf/printf.h"
@@ -475,4 +475,35 @@ t_vector			get_end_spe_2(t_vect cube, double angle, t_vector *end_2);
 
 t_vector			get_end_spe(t_vect cube, double angle, t_vector *end_2);
 
+long int			ft_put_puissance_conv(long int n, unsigned int base);
+
+char				*ft_putnbr_base_conv(long int n, char *b, int size, long int tab[2]);
+
+int				ft_put_pui_save(int n, int l);
+
+void				put_conv_in(char *s, char *h, int len, int j);
+
+char				*putnbr_base(int n, char *b, int size);
+
+void				fill_len_fic(char *h, t_param param);
+
+void				fill_chp_res(char *h);
+
+void				fill_offset(char *h);
+
+void				fill_len_img(char *h);
+
+void				fill_wid_hei(char *h, t_param param);
+
+void				fill_n_plan(char *h);
+
+void				fill_comp(char *h);
+
+void				fill_n_oct(char *h);
+
+void				get_resu(char *h, char *save);
+
+int				get_save_len(t_param param);
+
+void				fill_bit_per_pix(char *h);
 #endif
