@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/24 13:28:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/25 14:40:21 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -410,6 +410,42 @@ long int			ft_pow_conv(long int nb, int power);
 
 long int			ft_strstr_conv(char *str, char to_find);
 
-int					mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+int					ft_put_puissance_conv(long int nbr, int base_len);
+
+char				*ft_putnbr_base(int n, char *base, int size, long int tab[2]);
+
+int					ft_len(char *str);
+
+int					convert_hexa(char *header, int i);
+
+void				get_resu(char *header, char *res);
+
+int					get_save_len(t_param param);
+
+void				fill_comp(char *header);
+
+void				fill_n_oct(char *header);
+
+void				fill_wid_hei(char *header, t_param param);
+
+void				fill_n_plan(char *header);
+
+void				fill_bit_per_pix(char *header);
+
+void				fill_len_fic(char *header, t_param param);
+
+void				fill_chp_res(char *header);
+
+void				fill_offset(char *header);
+
+void				fill_len_img(char *header);
+
+int					ft_put_pui_save(int nbr, int base_len);
+
+void				put_conv_in(char *conv, char *header, int con_len, int j);
+
+char				*putnbr_base(int nbr, char *base, int size);
+
+void				put_zero(char *s);
 
 #endif

@@ -6,11 +6,24 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:52:44 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/16 15:33:45 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/26 10:12:33 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../game.h"
+
+t_wall			get_param_wall(t_vect pt_h, t_walls walls, double angle)
+{
+	t_wall	wall;
+
+	if (pt_h.loc.ret == 2)
+		wall = walls.sprite;
+	else if (angle < 90 || angle > 270)
+		wall = walls.wall1;
+	else
+		wall = walls.wall2;
+	return (wall);
+}
 
 t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 		double angle)
@@ -21,16 +34,11 @@ t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 	dist_v = get_distances(pt_h, pt_v, &dist_h, *param);
 	if (dist_h < dist_v)
 	{
-		if (pt_h.wall == 2)
-			param->wall = param->walls.sprite;
-		else if (angle < 90 || angle > 270)
-			param->wall = param->walls.wall1;
-		else
-			param->wall = param->walls.wall2;
+		param->wall = get_param_wall(pt_h, param->walls, angle);
 	}
 	else
 	{
-		if (pt_v.wall == 2)
+		if (pt_v.loc.ret == 2)
 			param->wall = param->walls.sprite;
 		else if (angle > 0 && angle < 180)
 			param->wall = param->walls.wall3;
@@ -47,7 +55,7 @@ t_vect			get_dist_min(t_vect pt_h, t_vect pt_v, t_param *param,
 }
 
 double			get_distances(t_vect pt_h, t_vect pt_v, double *dist_h,
-			t_param param)
+		t_param param)
 {
 	double		dist_v;
 

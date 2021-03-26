@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:46:48 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/18 12:19:42 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/26 10:11:22 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double			get_angle_right(int angle_h, double counter)
 	return (angle);
 }
 
-void			get_wall_dim(t_wall *wall, double dist, t_param *param, double angle)
+void			get_dim(t_wall *wall, double dist, t_param *param, double angle)
 {
 	wall->width = 1;
 	wall->height = (param->height / dist) * 60;

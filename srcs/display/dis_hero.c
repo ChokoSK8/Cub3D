@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:59:56 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/16 15:31:33 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/26 11:03:19 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		change_hero_pos(t_param param, int color)
 {
 	int		x;
 	int		y;
-	int		counter;
+	int		c;
 	int		pos;
 
 	y = 0;
@@ -25,14 +25,14 @@ void		change_hero_pos(t_param param, int color)
 		x = 0;
 		while (x < param.hero.len)
 		{
-			counter = 0;
-			while (counter < 4)
+			c = 0;
+			while (c < 4)
 			{
-				pos = ((int)param.hero.vec.x - x) * 4 + (param.img_map.size_line *
-				((int)param.hero.vec.y - y)) + counter;
+				pos = ((int)param.hero.vec.x - x) * 4 +
+				(param.img_map.size_line * ((int)param.hero.vec.y - y)) + c;
 				color ? color = -10 : color;
 				param.img_map.data[pos] = color;
-				counter++;
+				c++;
 			}
 			x++;
 		}

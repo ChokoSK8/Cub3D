@@ -6,13 +6,11 @@
 /*   By: abrun <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 12:09:52 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/23 14:07:38 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/25 14:23:57 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../game.h"
-
-int				ft_len(char *str);
 
 long int		ft_strstr_conv(char *str, char to_find)
 {
@@ -81,10 +79,6 @@ long int		ft_atoi_base(char *str, char *base)
 	n_minus % 2 ? nbr *= -1 : nbr;
 	return (nbr);
 }
-
-char			*ft_putnbr_base(int n, char *base, int size, long int tab[2]);
-
-int				ft_put_puissance_conv(long int nbr, int base_len);
 
 char			*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {

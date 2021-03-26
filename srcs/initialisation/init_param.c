@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:36:29 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/24 13:18:27 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/26 11:01:41 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int			init_param(t_param *param)
 
 	param->mlx = mlx_init();
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
-	printf("w_max : %d\n", param->max_w);
-	printf("h_max : %d\n", param->max_h);
 	init_checks(param);
 	fd = open(param->cub, O_RDONLY);
 	if (!get_param_cub(param, fd))
