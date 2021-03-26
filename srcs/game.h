@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/25 14:40:21 by abrun            ###   ########.fr       */
+/*   Updated: 2021/03/26 10:32:09 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "../libx/mlx.h"
+# include "../mlx.h"
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
 # include "../printf/printf.h"
@@ -42,6 +42,12 @@ typedef struct		s_line
 	double		c;
 }					t_line;
 
+typedef struct		s_lines
+{
+	t_line	d;
+	t_line	d_2;
+}					t_lines;
+
 typedef struct		s_eq
 {
 	double		a;
@@ -55,6 +61,12 @@ typedef struct		s_vector
 	double		x;
 	double		y;
 }					t_vector;
+
+typedef struct		s_vectors
+{
+	t_vector	v;
+	t_vector	v_2;
+}					t_vectors;
 
 typedef struct		s_player
 {
@@ -106,7 +118,6 @@ typedef struct		s_vect
 {
 	double		x;
 	double		y;
-	int			wall;
 	int			dir;
 	int			cond;
 	t_vector	sp;
@@ -190,7 +201,7 @@ t_vect				get_pt_v(t_param param, t_map map, double angle);
 t_vect				get_dist_min(t_vect pt_h, t_vect pt_v,
 		t_param *param, double angle);
 
-void				get_wall_dim(t_wall *wall, double dist, t_param *param, double angle);
+void				get_dim(t_wall *wall, double dist, t_param *param, double angle);
 
 double				get_d(t_player hero, t_vect pt_a, double counter);
 
@@ -410,42 +421,58 @@ long int			ft_pow_conv(long int nb, int power);
 
 long int			ft_strstr_conv(char *str, char to_find);
 
-int					ft_put_puissance_conv(long int nbr, int base_len);
+int					mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
-char				*ft_putnbr_base(int n, char *base, int size, long int tab[2]);
+int					get_loc_y(double angle, t_vect pt, t_param param);
 
-int					ft_len(char *str);
+t_vect				init_sp_cube_n(double *n, t_loc *sp, t_vect pt, t_param *param);
 
-int					convert_hexa(char *header, int i);
+double				init_angle_ds(t_lines *ds, t_vect cube, t_param *param);
 
-void				get_resu(char *header, char *res);
+t_vect				get_pt_sprite(double angle, t_param param, t_map map);
 
-int					get_save_len(t_param param);
+int					loop_cond(int n_wall, int width, t_loc loc, t_loc sp);
 
-void				fill_comp(char *header);
+double				display_sprite(int *n_wall, t_param *param,
+				double counter, t_vect pt);
 
-void				fill_n_oct(char *header);
+t_vect				get_inter(t_line d_1, t_line d_2);
 
-void				fill_wid_hei(char *header, t_param param);
+int					is_print(t_vect pt, t_vector end_1, t_vector end_2);
 
-void				fill_n_plan(char *header);
+double				conv_rad(double rad);
 
-void				fill_bit_per_pix(char *header);
+double				get_angle_sprite(t_vector hero, t_vect cube);
 
-void				fill_len_fic(char *header, t_param param);
+t_line				get_d_angle_hero(t_player hero, t_map map);
 
-void				fill_chp_res(char *header);
+t_vector			get_end_270(t_vector end_1, t_vector *end_2);
 
-void				fill_offset(char *header);
+t_vector			get_end_360(t_vector end_1, t_vector *end_2);
 
-void				fill_len_img(char *header);
+t_vector			get_end(t_line d, t_vect cen, double angle, t_vector *end_2);
 
-int					ft_put_pui_save(int nbr, int base_len);
+t_line				get_d_perpendicular(t_line d, t_vect pt);
 
-void				put_conv_in(char *conv, char *header, int con_len, int j);
+int					get_x_sprite(t_vector pt_1, t_vect pt_2);
 
-char				*putnbr_base(int nbr, char *base, int size);
+void				change_end_2(t_vector *end_2, t_vector end_1);
 
-void				put_zero(char *s);
+t_eq				get_eq_end(t_line d, t_vect cen);
+
+void				get_ends_end(t_eq eq, t_line d,
+				t_vector *end_1, t_vector *end_2);
+	
+t_vector			get_end_90(t_vector end_1, t_vector *end_2);
+
+t_vector			get_end_180(t_vector end_1, t_vector *end_2);
+
+t_line				get_line_2_pts(t_vect pt_1, t_vector pt_2);
+
+double				get_dist(t_vector pt_1, t_vect pt_2);
+
+t_vector			get_end_spe_2(t_vect cube, double angle, t_vector *end_2);
+
+t_vector			get_end_spe(t_vect cube, double angle, t_vector *end_2);
 
 #endif
