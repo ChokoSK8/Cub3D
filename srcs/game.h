@@ -161,6 +161,7 @@ typedef struct		s_param
 	char		*cub;
 	int			x;
 	char		*save;
+	int			fd;
 }					t_param;
 
 typedef struct		s_point
@@ -343,11 +344,11 @@ int					check_all(int *checks, t_param *param);
 
 void				free_param(t_param *param);
 
-void				free_tab_checks(t_param *param);
+void				free_tab_checks(t_param *param, int fd);
 
 void				free_map_param(t_param *param);
 
-void				free_in_loop(t_param *param, int i, char **map);
+void				free_in_loop(t_param *param, int i, char **map, int fd);
 
 int					is_surrounded(t_map map);
 

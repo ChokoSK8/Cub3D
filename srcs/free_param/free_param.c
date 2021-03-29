@@ -36,7 +36,7 @@ void		free_param(t_param *param)
 	free(param->map.map);
 }
 
-void		free_tab_checks(t_param *param)
+void		free_tab_checks(t_param *param, int fd)
 {
 	if (param->checks[0] == 1)
 		free(param->no);
@@ -52,7 +52,13 @@ void		free_tab_checks(t_param *param)
 		free(param->floor);
 	if (param->checks[7] == 1)
 		free(param->sp);
+	char	*line;
+	while (get_next_line(fd, &line, 10))
+		free(line);
+	free(line);
 	free(param->tab);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
 }
 
 void		free_map_param(t_param *param)
@@ -60,6 +66,7 @@ void		free_map_param(t_param *param)
 	int		counter;
 
 	counter = 0;
+	printf("coucou\n");
 	free(param->no);
 	free(param->sp);
 	free(param->so);
@@ -67,24 +74,17 @@ void		free_map_param(t_param *param)
 	free(param->we);
 	free(param->floor);
 	free(param->roof);
-	/*mlx_destroy_image(param->mlx, param->img_map.image);
-	mlx_destroy_image(param->mlx, param->img.image);
-	mlx_destroy_image(param->mlx, param->walls.wall1.img.image);
-	mlx_destroy_image(param->mlx, param->walls.wall2.img.image);
-	mlx_destroy_image(param->mlx, param->walls.wall3.img.image);
-	mlx_destroy_image(param->mlx, param->walls.wall4.img.image);
-	mlx_destroy_image(param->mlx, param->walls.sprite.img.image);*/
 	while (param->map.map[counter])
 		free(param->map.map[counter++]);
 	free(param->map.map);
-	mlx_destroy_window(param->mlx, param->win);
+	free(param->tab);
 	mlx_destroy_display(param->mlx);
 	free(param->mlx);
 }
 
-void		free_in_loop(t_param *param, int i, char **map)
+void		free_in_loop(t_param *param, int i, char **map, int fd)
 {
-	free_tab_checks(param);
+	free_tab_checks(param, fd);
 	while (i--)
 		free(map[i]);
 	free(map);

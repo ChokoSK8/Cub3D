@@ -24,7 +24,7 @@ char		*fill_elements(t_param *param, int fd, char *line)
 			return (0);
 		if (!(ret = fill_param(param, line)))
 		{
-			free_tab_checks(param);
+			free_tab_checks(param, fd);
 			free(line);
 			return (0);
 		}
@@ -73,7 +73,7 @@ char		*get_element(int fd, t_param *param)
 	{
 		if (get_next_line(fd, &line, 1) == -1)
 		{
-			free_tab_checks(param);
+			free_tab_checks(param, fd);
 			ft_putstr_fd("Erreur lecture ou pas de map!\n", 1);
 			return (NULL);
 		}

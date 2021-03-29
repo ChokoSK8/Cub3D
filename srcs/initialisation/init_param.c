@@ -14,26 +14,24 @@
 
 int			init_param(t_param *param)
 {
-	int		fd;
-
 	param->mlx = mlx_init();
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
 	init_checks(param);
-	fd = open(param->cub, O_RDONLY);
-	if (!get_param_cub(param, fd))
+	param->fd = open(param->cub, O_RDONLY);
+	if (!get_param_cub(param, param->fd))
 	{
-		if (fd > 0)
-			close(fd);
+		if (param->fd > 0)
+			close(param->fd);
 		return (0);
 	}
-	close(fd);
+	close(param->fd);
+	if (!(init_map(&param->map, param->tab, param)))
+		return (0);
 	init_wall1_img(&param->walls.wall1, *param);
 	init_wall2_img(&param->walls.wall2, *param);
 	init_wall3_img(&param->walls.wall3, *param);
 	init_wall4_img(&param->walls.wall4, *param);
 	init_sprite_img(&param->walls.sprite, *param);
-	if (!(init_map(&param->map, param->tab, param)))
-		return (0);
 	param->d_max = get_dist_max(param->map);
 	init_img(&param->img, *param);
 	param->win = mlx_new_window(param->mlx, param->width,

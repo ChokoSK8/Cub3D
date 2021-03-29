@@ -111,6 +111,8 @@ int				get_next_line(int fd, char **line, int b_size)
 		if (!(buf = get_buf(fd, &ret, buf, b_size)) || !fill_line(buf, line))
 		{
 			*line = NULL;
+			if (buf)
+				free(buf);
 			return (-1);
 		}
 	if (ret <= 0)

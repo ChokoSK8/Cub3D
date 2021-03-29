@@ -16,13 +16,13 @@ int			check_all(int *checks, t_param *param)
 {
 	int		counter;
 
+	(void)param;
 	counter = 0;
 	while (counter < 8)
 	{
 		if (checks[counter] != 1)
 		{
 			ft_putstr_fd("Il n'y a pas tous les éléments !\n", 1);
-			free_tab_checks(param);
 			return (0);
 		}
 		counter++;

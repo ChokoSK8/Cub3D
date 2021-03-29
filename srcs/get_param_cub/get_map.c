@@ -24,7 +24,7 @@ int			fill_tab_map(char *line, int fd, char *tab, t_param *param)
 	{
 		if ((done = get_next_line(fd, &line, 30)) == -1)
 		{
-			free_tab_checks(param);
+			free_tab_checks(param, fd);
 			free(line);
 			ft_putstr_fd("Erreur lors de la lecture du fichier !\n", 1);
 			return (0);
@@ -46,7 +46,7 @@ char		**get_map(char *tab, t_param *param)
 	max_width = get_max_width(tab);
 	if (!(map = malloc(sizeof(int *) * (get_height(tab) + 1))))
 	{
-		free_tab_checks(param);
+		free_tab_checks(param, param->fd);
 		printf("Un malloc a échoué !\n");
 		return (0);
 	}
@@ -69,7 +69,7 @@ int			loop_get_map(char *tab, char **map, int max_width, t_param *param)
 		if (!(map[i] = malloc(sizeof(int) * (max_width + 1))))
 		{
 			printf("Un malloc a échoué !\n");
-			free_in_loop(param, i, map);
+			free_in_loop(param, i, map, param->fd);
 			return (0);
 		}
 		while (*tab && *tab != '\n')
