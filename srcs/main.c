@@ -63,7 +63,7 @@ int			main(int ac, char **av)
 			param.map.len_pix, param.map.height * param.map.len_pix);
 	param.img_map.data = mlx_get_data_addr(param.img_map.image, &param.img_map.bpp,
 			&param.img_map.size_line, &param.img_map.endian);
-	display_map(param.map, param);
+//	display_map(param.map, param);
 	display_background(param);
 	display_multi_angle(&param, 0xFF);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);

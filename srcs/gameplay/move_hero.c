@@ -20,6 +20,7 @@ int			move_hero(int key, t_param *param)
 		free_param(param);
 		mlx_destroy_window(param->mlx, param->win);
 		mlx_destroy_display(param->mlx);
+		free(param->mlx);
 		exit(0);
 	}
 	if (key == 'a')
