@@ -52,7 +52,8 @@ char		*ft_putnbr_base_conv(long int nbr, char *base, int size, long int tab[2])
 	int				base_len;
 	char			*res;
 
-	if (!(res = (char *)malloc(sizeof(char) * size--)))
+	(void)size;
+	if (!(res = malloc(10)))
 		return (0);
 	base_len = ft_len(base);
 	if (tab[0])
@@ -69,5 +70,7 @@ char		*ft_putnbr_base_conv(long int nbr, char *base, int size, long int tab[2])
 		res[tab[0]] = base[0];
 		tab[0]++;
 	}
+	while (tab[0] < 8)
+		res[tab[0]++] = 0;
 	return (res);
 }

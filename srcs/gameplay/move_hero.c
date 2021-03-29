@@ -21,7 +21,7 @@ int			move_hero(int key, t_param *param)
 		mlx_destroy_window(param->mlx, param->win);
 		mlx_destroy_display(param->mlx);
 		free(param->mlx);
-		exit(0);
+		exit(1);
 	}
 	if (key == 'a')
 		move_key_12(&param->hero, param->img_map);

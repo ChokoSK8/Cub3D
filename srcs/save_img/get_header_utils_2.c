@@ -20,7 +20,6 @@ void		fill_len_fic(char *header, t_param param)
 
 	c = get_c(param.width);
 	len = 54 + (param.width * 3 + c) * param.height;
-	printf("len : %d\n", len);
 	conv = putnbr_base(len, "0123456789", 8);
 	put_conv_in(conv, header, 8, 2);
 	header[10] = 0;

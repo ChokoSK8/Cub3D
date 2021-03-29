@@ -99,8 +99,6 @@ char			*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		n *= -1;
 	}
 	size = ft_put_puissance_conv(n, base_len) + 1 + tab_c_p[0];
-	if (!(res = (char *)malloc(sizeof(char) * size)))
-		return (0);
 	if (size == 0)
 		return (0);
 	tab_c_p[1] = size - 1 - tab_c_p[0];
