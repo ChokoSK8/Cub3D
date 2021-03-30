@@ -15,6 +15,7 @@
 int			init_param(t_param *param)
 {
 	param->mlx = mlx_init();
+	param->destroy = 0;
 	mlx_get_screen_size(param->mlx, &param->max_w, &param->max_h);
 	init_checks(param);
 	param->fd = open(param->cub, O_RDONLY);
@@ -64,6 +65,11 @@ int			init_map(t_map *map, char *tab, t_param *param)
 	map->height = get_height(tab);
 	map->max_width = get_max_width(tab);
 	if (!is_pos_hero(map->map))
+	{
+		free_map_param(param);
+		return (0);
+	}
+	if (!check_spaces(map->map, map->height))
 	{
 		free_map_param(param);
 		return (0);

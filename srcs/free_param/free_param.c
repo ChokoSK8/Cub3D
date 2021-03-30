@@ -34,6 +34,9 @@ void		free_param(t_param *param)
 	while (param->map.map[counter])
 		free(param->map.map[counter++]);
 	free(param->map.map);
+	mlx_destroy_window(param->mlx, param->win);
+	mlx_destroy_display(param->mlx);
+	free(param->mlx);
 }
 
 void		free_tab_checks(t_param *param, int fd)
@@ -66,7 +69,6 @@ void		free_map_param(t_param *param)
 	int		counter;
 
 	counter = 0;
-	printf("coucou\n");
 	free(param->no);
 	free(param->sp);
 	free(param->so);

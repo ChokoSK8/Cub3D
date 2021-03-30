@@ -144,6 +144,7 @@ typedef struct		s_param
 	int			max_w;
 	int			max_h;
 	int			d_max;
+	int			destroy;
 	t_walls		walls;
 	t_wall		wall;
 	t_player	hero;
@@ -507,4 +508,16 @@ void				get_resu(char *h, char *save);
 int				get_save_len(t_param param);
 
 void				fill_bit_per_pix(char *h);
+
+int				destroy_win(int k, t_param *p);
+
+int				next_frame(t_param *param);
+
+int				check_spaces(char **map, int h);
+
+int				check_up_down(char **map, int i, int j, int h);
+
+int				check_right_left(char **map, int i, int j);
+
+int				is_one_around(char **map, int i, int j, int h);
 #endif

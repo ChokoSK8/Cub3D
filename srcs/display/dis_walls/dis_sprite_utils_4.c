@@ -16,7 +16,7 @@ t_line			get_line_2_pts(t_vect pt_1, t_vector pt_2)
 {
 	t_line	d;
 
-	if (round(pt_1.x) == round(pt_2.x))
+	if (pt_1.x == pt_2.x)
 		d.c = pt_1.x;
 	else
 	{

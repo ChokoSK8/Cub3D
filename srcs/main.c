@@ -12,14 +12,6 @@
 
 #include "game.h"
 
-int	destroy_win(int key, t_param *param)
-{
-	(void)key;
-	(void)param;
-	printf("hey\n");
-	return (0);
-}
-
 int			is_save(char *s)
 {
 	if (s[0] == '-' && s[1] == '-' && s[2] == 's'
@@ -48,6 +40,16 @@ void		save_img(t_param param)
 	close(fd);
 }
 
+int			next_frame(t_param *param)
+{
+	if (param->destroy == 1)
+	{
+		free_param(param);
+		exit (1);
+	}
+	return (1);
+}
+
 int			main(int ac, char **av)
 {
 	t_param		param;
@@ -69,15 +71,9 @@ int			main(int ac, char **av)
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
 	if (ac >= 3 && is_save(av[2]))
 		save_img(param);
-	if (!(mlx_hook(param.win, 33, 1L << 17, destroy_win, &param)))
-	{
-		free_param(&param);
-		mlx_destroy_window(param.mlx, param.win);
-		mlx_destroy_display(param.mlx);
-		free(param.mlx);
-		return (1);
-	}
+	mlx_hook(param.win, 17, 1L << 17, destroy_win, &param);
 	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
+	mlx_loop_hook(param.mlx, next_frame, &param);
 	mlx_loop(param.mlx);
 	return (0);
 }

@@ -37,7 +37,10 @@ int			move_pt(t_point *pt, t_map map, t_point *end, t_moves *dir)
 		config_right(pt, dir);
 	}
 	else
+	{
+		printf("pt : (%d, %d)\n", pt->x, pt->y);
 		return (0);
+	}
 	return (1);
 }
 
