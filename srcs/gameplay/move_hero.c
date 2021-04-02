@@ -17,8 +17,8 @@ int			move_hero(int key, t_param *param)
 	display_background(*param);
 	if (key == 65307)
 	{
-		param->destroy = 1;
-		return (1);
+		free_param(param);
+		exit(1);
 	}
 	if (key == 'a')
 		move_key_12(&param->hero, param->img_map);
@@ -57,11 +57,4 @@ void		move_key_6(t_player *hero, t_img img)
 		hero->vec.x += hero->speed *
 				sin(convert(hero->angle));
 	}
-}
-
-int	destroy_win(int key, t_param *param)
-{
-	(void)key;
-	(void)param;
-	return (1);
 }

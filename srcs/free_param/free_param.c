@@ -41,6 +41,8 @@ void		free_param(t_param *param)
 
 void		free_tab_checks(t_param *param, int fd)
 {
+	char	*line;
+
 	if (param->checks[0] == 1)
 		free(param->no);
 	if (param->checks[1] == 1)
@@ -55,7 +57,6 @@ void		free_tab_checks(t_param *param, int fd)
 		free(param->floor);
 	if (param->checks[7] == 1)
 		free(param->sp);
-	char	*line;
 	while (get_next_line(fd, &line, 10))
 		free(line);
 	free(line);

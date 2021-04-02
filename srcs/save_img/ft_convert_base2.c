@@ -47,7 +47,8 @@ long int	ft_put_puissance_conv(long int nbr, unsigned int base_len)
 	return (puissance);
 }
 
-char		*ft_putnbr_base_conv(long int nbr, char *base, int size, long int tab[2])
+char		*ft_putnbr_base_conv(long int nbr, char *base, int size,
+		long int tab[2])
 {
 	int				base_len;
 	char			*res;

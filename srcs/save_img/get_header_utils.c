@@ -37,8 +37,10 @@ void		fill_wid_hei(char *header, t_param param)
 
 	conv = putnbr_base(param.width, "0123456789", 8);
 	put_conv_in(conv, header, 8, 34);
+	free(conv);
 	conv = putnbr_base(param.height, "0123456789", 8);
 	put_conv_in(conv, header, 8, 42);
+	free(conv);
 }
 
 void		fill_n_plan(char *header)

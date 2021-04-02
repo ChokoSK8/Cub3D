@@ -77,6 +77,7 @@ t_vect			get_pt_a_90(t_param *param, double angle)
 		else
 			param->wall = param->walls.wall2;
 		pt_a = get_pt_h(*param, param->map, angle);
+		pt_a.dir = 1;
 	}
 	else
 	{
@@ -85,6 +86,7 @@ t_vect			get_pt_a_90(t_param *param, double angle)
 		else
 			param->wall = param->walls.wall4;
 		pt_a = get_pt_v(*param, param->map, angle);
+		pt_a.dir = 0;
 	}
 	return (pt_a);
 }

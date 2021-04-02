@@ -50,7 +50,7 @@ int			check_up_down(char **map, int i, int j, int height)
 
 	k = i;
 	up = 0;
-	while (i-- > -1 && !up)
+	while (i-- > 0 && !up)
 	{
 		if (map[i][j] == '1')
 			up = 1;
@@ -64,6 +64,7 @@ int			check_up_down(char **map, int i, int j, int height)
 	}
 	return (0);
 }
+
 int			check_right_left(char **map, int i, int j)
 {
 	int		k;
@@ -71,7 +72,7 @@ int			check_right_left(char **map, int i, int j)
 
 	k = j;
 	left = 0;
-	while (j-- > -1 && !left)
+	while (j-- > 0 && !left)
 	{
 		if (map[i][j] == '1')
 			left = 1;

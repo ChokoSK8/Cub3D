@@ -112,5 +112,4 @@ void		put_conv_in(char *conv, char *header, int con_len, int j)
 	}
 	while (j < i + con_len)
 		header[j++] = '0';
-	free(conv);
 }

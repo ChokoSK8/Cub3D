@@ -40,16 +40,6 @@ void		save_img(t_param param)
 	close(fd);
 }
 
-int			next_frame(t_param *param)
-{
-	if (param->destroy == 1)
-	{
-		free_param(param);
-		exit (1);
-	}
-	return (1);
-}
-
 int			main(int ac, char **av)
 {
 	t_param		param;
@@ -64,16 +54,14 @@ int			main(int ac, char **av)
 		return (0);
 	param.img_map.image = mlx_new_image(param.mlx, param.map.max_width *
 			param.map.len_pix, param.map.height * param.map.len_pix);
-	param.img_map.data = mlx_get_data_addr(param.img_map.image, &param.img_map.bpp,
-			&param.img_map.size_line, &param.img_map.endian);
+	param.img_map.data = mlx_get_data_addr(param.img_map.image,
+		&param.img_map.bpp, &param.img_map.size_line, &param.img_map.endian);
 	display_background(param);
 	display_multi_angle(&param, 0xFF);
 	mlx_put_image_to_window(param.mlx, param.win, param.img.image, 0, 0);
 	if (ac >= 3 && is_save(av[2]))
 		save_img(param);
-	mlx_hook(param.win, 17, 1L << 17, destroy_win, &param);
 	mlx_hook(param.win, 2, 1L << 0, move_hero, &param);
-	mlx_loop_hook(param.mlx, next_frame, &param);
 	mlx_loop(param.mlx);
 	return (0);
 }

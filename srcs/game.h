@@ -6,7 +6,7 @@
 /*   By: abrun <abrun@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 10:46:38 by abrun             #+#    #+#             */
-/*   Updated: 2021/03/26 10:32:09 by abrun            ###   ########.fr       */
+/*   Updated: 2021/04/02 11:19:14 by abrun            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef struct		s_moves
 	int		left;
 	int		up;
 	int		down;
+	int		r_2;
+	int		l_2;
+	int		u_2;
+	int		d_2;
 }					t_moves;
 
 typedef struct		s_line
@@ -144,7 +148,6 @@ typedef struct		s_param
 	int			max_w;
 	int			max_h;
 	int			d_max;
-	int			destroy;
 	t_walls		walls;
 	t_wall		wall;
 	t_player	hero;
@@ -162,6 +165,7 @@ typedef struct		s_param
 	char		*cub;
 	int			x;
 	char		*save;
+	int			destroy;
 	int			fd;
 }					t_param;
 
@@ -180,7 +184,8 @@ void				get_pt_a_hori(t_player hero, t_vect *pt_a,
 void				get_pt_a_hori_90(t_player hero, t_vect *pt_a,
 		t_map map, double angle);
 
-void				get_vector_hori(double angle, int len_pix, t_vector *vector);
+void				get_vector_hori(double angle, int len_pix,
+		t_vector *vector);
 
 int					is_wall_hori(t_vect pt, double angle, t_param param);
 
@@ -192,7 +197,8 @@ void				get_pt_a_vert(t_player hero, t_vect *pt_a,
 void				get_pt_a_vert_90(t_player hero, t_vect *pt_a,
 		t_map map, double angle);
 
-void				get_vector_vert(double angle, int len_pix, t_vector *vector);
+void				get_vector_vert(double angle, int len_pix,
+		t_vector *vector);
 
 int					get_x(t_vect pt, double angle, t_param param);
 
@@ -203,7 +209,8 @@ t_vect				get_pt_v(t_param param, t_map map, double angle);
 t_vect				get_dist_min(t_vect pt_h, t_vect pt_v,
 		t_param *param, double angle);
 
-void				get_dim(t_wall *wall, double dist, t_param *param, double angle);
+void				get_dim(t_wall *wall, double dist, t_param *param,
+		double angle);
 
 double				get_d(t_player hero, t_vect pt_a, double counter);
 
@@ -247,7 +254,8 @@ size_t				get_width(char *tab);
 
 char				**get_map(char *tab, t_param *param);
 
-int					loop_get_map(char *tab, char **map, int max_width, t_param *param);
+int					loop_get_map(char *tab, char **map, int max_width,
+		t_param *param);
 
 int					init_map(t_map *map, char *tab, t_param *param);
 
@@ -351,8 +359,6 @@ void				free_map_param(t_param *param);
 
 void				free_in_loop(t_param *param, int i, char **map, int fd);
 
-int					is_surrounded(t_map map);
-
 void				get_pt_start(t_point *pt, char **map);
 
 int					is_0_around(t_point pt, char **map, int max_w, int hei);
@@ -381,7 +387,8 @@ t_point				get_hero(char **map);
 
 char				*get_final_data(t_img img, t_param param);
 
-int					is_print_dist(t_loc loc, t_vector hero, t_vect pt, t_param param);
+int					is_print_dist(t_loc loc, t_vector hero, t_vect pt,
+		t_param param);
 
 t_line				get_line_2_pts(t_vect pt_1, t_vector pt_2);
 
@@ -391,15 +398,18 @@ double				get_angle_sprite(t_vector hero, t_vect cube);
 
 double				conv_rad(double rad);
 
-t_vector			get_end(t_line d, t_vect cen, double angle, t_vector *end_2);
+t_vector			get_end(t_line d, t_vect cen, double angle,
+		t_vector *end_2);
 
 t_vect				get_inter(t_line d_1, t_line d_2);
 
 int					is_print(t_vect pt, t_vector end_1, t_vector end_2);
 
-int					is_printable(t_vect pt, t_vector end_1, t_vector end_2, t_vect pt_a);
+int					is_printable(t_vect pt, t_vector end_1, t_vector end_2,
+		t_vect pt_a);
 
-int					is_print_dist(t_loc loc, t_vector hero, t_vect pt, t_param param);
+int					is_print_dist(t_loc loc, t_vector hero, t_vect pt,
+		t_param param);
 
 void				change_end_2(t_vector *e, t_vector d);
 
@@ -427,7 +437,8 @@ int					mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 int					get_loc_y(double angle, t_vect pt, t_param param);
 
-t_vect				init_sp_cube_n(double *n, t_loc *sp, t_vect pt, t_param *param);
+t_vect				init_sp_cube_n(double *n, t_loc *sp, t_vect pt,
+		t_param *param);
 
 double				init_angle_ds(t_lines *ds, t_vect cube, t_param *param);
 
@@ -452,7 +463,8 @@ t_vector			get_end_270(t_vector end_1, t_vector *end_2);
 
 t_vector			get_end_360(t_vector end_1, t_vector *end_2);
 
-t_vector			get_end(t_line d, t_vect cen, double angle, t_vector *end_2);
+t_vector			get_end(t_line d, t_vect cen, double angle,
+		t_vector *end_2);
 
 t_line				get_d_perpendicular(t_line d, t_vect pt);
 
@@ -464,7 +476,7 @@ t_eq				get_eq_end(t_line d, t_vect cen);
 
 void				get_ends_end(t_eq eq, t_line d,
 				t_vector *end_1, t_vector *end_2);
-	
+
 t_vector			get_end_90(t_vector end_1, t_vector *end_2);
 
 t_vector			get_end_180(t_vector end_1, t_vector *end_2);
@@ -479,9 +491,10 @@ t_vector			get_end_spe(t_vect cube, double angle, t_vector *end_2);
 
 long int			ft_put_puissance_conv(long int n, unsigned int base);
 
-char				*ft_putnbr_base_conv(long int n, char *b, int size, long int tab[2]);
+char				*ft_putnbr_base_conv(long int n, char *b, int size,
+		long int tab[2]);
 
-int				ft_put_pui_save(int n, int l);
+int					ft_put_pui_save(int n, int l);
 
 void				put_conv_in(char *s, char *h, int len, int j);
 
@@ -505,19 +518,33 @@ void				fill_n_oct(char *h);
 
 void				get_resu(char *h, char *save);
 
-int				get_save_len(t_param param);
+int					get_save_len(t_param param);
 
 void				fill_bit_per_pix(char *h);
 
-int				destroy_win(int k, t_param *p);
+int					check_spaces(char **map, int h);
 
-int				next_frame(t_param *param);
+int					is_one_around(char **map, int i, int j, int h);
 
-int				check_spaces(char **map, int h);
+int					check_map(t_map map);
 
-int				check_up_down(char **map, int i, int j, int h);
+int					is_surrounded(t_map map, int y, int x);
 
-int				check_right_left(char **map, int i, int j);
+int					check_up_down(char **map, int i, int j, int height);
 
-int				is_one_around(char **map, int i, int j, int h);
+int					check_right_left(char **map, int i, int j);
+
+int					check_cases(char **map);
+
+int					check_right_left_0(t_map map, int y, int x);
+
+int					check_up_down_0(t_map map, int y, int x);
+
+int					check_diag_1_2(t_map map, int y, int x);
+
+int					check_diag_3_4(t_map map, int y, int x);
+
+int					check_cases_loop(char **map);
+
+int					is_valid_k(char c);
 #endif
